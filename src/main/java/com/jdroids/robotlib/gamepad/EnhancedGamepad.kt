@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Gamepad
 import com.jdroids.robotlib.command.Command
 import com.jdroids.robotlib.command.Scheduler
 
-class EnhancedGamepad: Gamepad() {
+class EnhancedGamepad(private val gamepad: Gamepad) {
     /**
      * An enum that contains all of the boolean buttons on a gamepad
      */
@@ -72,20 +72,20 @@ class EnhancedGamepad: Gamepad() {
     )
 
     private fun getRawButtonValue(button: Buttons): Boolean = when (button) {
-        Buttons.DPAD_UP -> dpad_up
-        Buttons.DPAD_DOWN -> dpad_down
-        Buttons.DPAD_LEFT -> dpad_left
-        Buttons.DPAD_RIGHT -> dpad_right
-        Buttons.A -> a
-        Buttons.B -> b
-        Buttons.X -> x
-        Buttons.Y -> y
-        Buttons.START -> start
-        Buttons.BACK -> back
-        Buttons.LEFT_BUMPER -> left_bumper
-        Buttons.RIGHT_BUMPER -> right_bumper
-        Buttons.LEFT_JOYSTICK -> left_stick_button
-        Buttons.RIGHT_JOYSTICK -> right_stick_button
+        Buttons.DPAD_UP -> gamepad.dpad_up
+        Buttons.DPAD_DOWN -> gamepad.dpad_down
+        Buttons.DPAD_LEFT -> gamepad.dpad_left
+        Buttons.DPAD_RIGHT -> gamepad.dpad_right
+        Buttons.A -> gamepad.a
+        Buttons.B -> gamepad.b
+        Buttons.X -> gamepad.x
+        Buttons.Y -> gamepad.y
+        Buttons.START -> gamepad.start
+        Buttons.BACK -> gamepad.back
+        Buttons.LEFT_BUMPER -> gamepad.left_bumper
+        Buttons.RIGHT_BUMPER -> gamepad.right_bumper
+        Buttons.LEFT_JOYSTICK -> gamepad.left_stick_button
+        Buttons.RIGHT_JOYSTICK -> gamepad.right_stick_button
     }
 
     enum class ActivationOptions {
@@ -142,10 +142,30 @@ class EnhancedGamepad: Gamepad() {
      * @return the current state of the button
      */
     fun getButtonValue(button: Buttons, activationOption: ActivationOptions): Boolean {
+        updateValues()
         return when (activationOption) {
             ActivationOptions.TOGGLE -> buttonToggles[button]!!.updateToggle(getButtonValue(button,
                     ActivationOptions.ON_PRESS))
             ActivationOptions.ON_PRESS -> buttonDebouncers[button]!!.get(getRawButtonValue(button))
+        }
+    }
+
+    fun getJoystick(hand: Hand, direction: Direction, deadband: Double = 0.02): Float {
+        updateValues()
+        val value = when (hand) {
+            Hand.LEFT -> if(direction == Direction.X) gamepad.left_stick_x else gamepad.left_stick_y
+            Hand.RIGHT -> if(direction == Direction.X) gamepad.right_stick_x else
+                gamepad.right_stick_y
+        }
+
+        return if (value < 0.02) 0.0f else value
+    }
+
+    fun getTrigger(hand: Hand): Float {
+        updateValues()
+        return when (hand) {
+            Hand.LEFT -> gamepad.left_trigger
+            Hand.RIGHT -> gamepad.right_trigger
         }
     }
 
@@ -173,29 +193,5 @@ class EnhancedGamepad: Gamepad() {
                 }
             }
         }
-    }
-
-    override fun update(event: KeyEvent?) {
-        super.update(event)
-        updateValues()
-    }
-
-    override fun update(event: MotionEvent?) {
-        super.update(event)
-        updateValues()
-    }
-
-    fun getJoystick(hand: Hand, direction: Direction, deadband: Double = 0.02): Float {
-        val value = when (hand) {
-            Hand.LEFT -> if(direction == Direction.X) left_stick_x else left_stick_y
-            Hand.RIGHT -> if(direction == Direction.X) right_stick_x else right_stick_y
-        }
-
-        return if (value < 0.02) 0.0f else value
-    }
-
-    fun getTrigger(hand: Hand): Float = when (hand) {
-        Hand.LEFT -> left_trigger
-        Hand.RIGHT -> right_trigger
     }
 }
