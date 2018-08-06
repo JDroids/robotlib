@@ -16,7 +16,10 @@ import com.qualcomm.robotcore.hardware.HardwareMap
  *
  * @see Command
  */
-abstract class Subsystem {
+abstract class Subsystem
+/**
+ * Creates a subsystem.
+ */() {
     /**
      * Whether or not [getDefaultCommand] was called.
      */
@@ -34,14 +37,6 @@ abstract class Subsystem {
     private var defaultCommand: Command? = null
 
     /**
-     * Creates a subsystem.
-     */
-    constructor() {
-        Scheduler.registerSubsystem(this)
-        currentCommandChanged = true
-    }
-
-    /**
      * Initialize the default command for a subsystem. By default, subsystems have no default
      * command, but if they do, the default command is set with this method. It is called on all
      * subsystems by CommandBase in the user's program after all the Subsystems are created.
@@ -50,10 +45,14 @@ abstract class Subsystem {
 
     /**
      * This method is designed to be where all of the hardware of the subsystem is initialized.
+     * `super.initHardware(hardwareMap)` has to be called at the end of the implementation of this
+     * function.
      *
      * @param hardwareMap the hardware map to initialize the hardware with
      */
-    abstract fun initHardware(hardwareMap: HardwareMap)
+    open fun initHardware(hardwareMap: HardwareMap) {
+        Scheduler.registerSubsystem(this)
+    }
 
     /**
      * When the run function of the scheduler is called this method will be called
@@ -136,4 +135,8 @@ abstract class Subsystem {
     fun getCurrentCommandName(): String = getCurrentCommand()?.toString() ?: ""
 
     override fun toString(): String = this.javaClass.toString()
+
+    init {
+        currentCommandChanged = true
+    }
 }

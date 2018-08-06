@@ -1,6 +1,7 @@
 package com.jdroids.robotlib.command
 
 import android.util.Log
+import com.jdroids.robotlib.gamepad.EnhancedGamepad
 import com.jdroids.robotlib.util.Set
 import java.util.*
 
@@ -24,6 +25,11 @@ object Scheduler {
      * The [Set] of all [Subsystems][Subsystem]
      */
     private val subsystems = Set<Subsystem>()
+
+    /**
+     * The [Set] of all [EnhancedGamepads][EnhancedGamepad]
+     */
+    private val gamepads = Set<EnhancedGamepad>()
     /**
      * The first [Command] in the list
      */
@@ -135,6 +141,8 @@ object Scheduler {
         }
         runningCommandsChanged = false
 
+        //Update the controller values
+
         // Call every subsystem's periodic method
         val subsystemElements = subsystems.getElements()
         while (subsystemElements.hasMoreElements()) {
@@ -179,6 +187,10 @@ object Scheduler {
      */
     internal fun registerSubsystem(system: Subsystem) {
         subsystems.add(system)
+    }
+
+    internal fun registerGamepad(gamepad: EnhancedGamepad) {
+        gamepads.add(gamepad)
     }
 
     internal fun remove(command: Command?) {
@@ -236,4 +248,11 @@ object Scheduler {
     fun isEnabled(): Boolean = !disabled
 
     fun getSubsystems(): Enumeration<Subsystem> = subsystems.getElements()
+
+    /**
+     * Returns whether or not all the commands are finished.
+     *
+     * @return true if the [Scheduler] has no more commands to run.
+     */
+    fun areAllCommandsCompleted(): Boolean = commandTable.isEmpty
 }

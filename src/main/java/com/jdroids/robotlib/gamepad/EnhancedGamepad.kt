@@ -7,6 +7,10 @@ import com.jdroids.robotlib.command.Command
 import com.jdroids.robotlib.command.Scheduler
 
 class EnhancedGamepad(private val gamepad: Gamepad) {
+    init {
+        Scheduler.registerGamepad(this)
+    }
+
     /**
      * An enum that contains all of the boolean buttons on a gamepad
      */
@@ -142,7 +146,6 @@ class EnhancedGamepad(private val gamepad: Gamepad) {
      * @return the current state of the button
      */
     fun getButtonValue(button: Buttons, activationOption: ActivationOptions): Boolean {
-        updateValues()
         return when (activationOption) {
             ActivationOptions.TOGGLE -> buttonToggles[button]!!.updateToggle(getButtonValue(button,
                     ActivationOptions.ON_PRESS))
@@ -151,7 +154,6 @@ class EnhancedGamepad(private val gamepad: Gamepad) {
     }
 
     fun getJoystick(hand: Hand, direction: Direction, deadband: Double = 0.02): Float {
-        updateValues()
         val value = when (hand) {
             Hand.LEFT -> if(direction == Direction.X) gamepad.left_stick_x else gamepad.left_stick_y
             Hand.RIGHT -> if(direction == Direction.X) gamepad.right_stick_x else
@@ -162,14 +164,13 @@ class EnhancedGamepad(private val gamepad: Gamepad) {
     }
 
     fun getTrigger(hand: Hand): Float {
-        updateValues()
         return when (hand) {
             Hand.LEFT -> gamepad.left_trigger
             Hand.RIGHT -> gamepad.right_trigger
         }
     }
 
-    private fun updateValues() {
+    internal fun updateValues() {
         for ((button, toggle) in buttonToggles) {
             toggle.updateToggle(buttonDebouncers[button]!!.get(getRawButtonValue(button)))
 

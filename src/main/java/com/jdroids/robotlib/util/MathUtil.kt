@@ -1,27 +1,32 @@
 package com.jdroids.robotlib.util
 
+import kotlin.math.PI
+
 /**
  * A singleton that contains a bunch of stuff necessary for math.
  */
-object Util {
+object MathUtil {
     fun limit(value: Double, limit: Double): Double =
             if (Math.abs(value) > limit) limit * Math.signum(value) else value
 
     //Constants
-    val sq2p1 = 2.414213562373095048802e0
-    val sq2m1 = .414213562373095048802e0
-    val p4 = .161536412982230228262e2
-    val p3 = .26842548195503973794141e3
-    val p2 = .11530293515404850115428136e4
-    val p1 = .178040631643319697105464587e4
-    val p0 = .89678597403663861959987488e3
-    val q4 = .5895697050844462222791e2
-    val q3 = .536265374031215315104235e3
-    val q2 = .16667838148816337184521798e4
-    val q1 = .207933497444540981287275926e4
-    val q0 = .89678597403663861962481162e3
-    val PIO2 = 1.5707963267948966135E0
+    const val sq2p1 = 2.414213562373095048802e0
+    const val sq2m1 = .414213562373095048802e0
+    const val p4 = .161536412982230228262e2
+    const val p3 = .26842548195503973794141e3
+    const val p2 = .11530293515404850115428136e4
+    const val p1 = .178040631643319697105464587e4
+    const val p0 = .89678597403663861959987488e3
+    const val q4 = .5895697050844462222791e2
+    const val q3 = .536265374031215315104235e3
+    const val q2 = .16667838148816337184521798e4
+    const val q1 = .207933497444540981287275926e4
+    const val q0 = .89678597403663861962481162e3
+    const val PIO2 = 1.5707963267948966135E0
     val nan = Double.NaN
+
+    val Math.TAU: Double
+        get() = PI * 2
 
     private fun mxatan(arg: Double): Double {
         val argsq = arg * arg

@@ -2,7 +2,7 @@ package com.jdroids.robotlib.drive
 
 import com.jdroids.robotlib.util.MotorGroup
 import com.qualcomm.robotcore.hardware.DcMotor
-import com.jdroids.robotlib.util.Util
+import com.jdroids.robotlib.util.MathUtil
 import com.qualcomm.robotcore.hardware.DcMotorSimple
 
 /**
@@ -148,7 +148,7 @@ class DifferentialDrive(private val leftMotorGroup: MotorGroup,
             if (Math.abs(xSpeedCorrected) < 0.2) {
                 val alpha = 0.1
                 quickStopAccumulator = (1 - alpha) * quickStopAccumulator + alpha *
-                        Util.limit(zRotationCorrected, 1.0) * 2
+                        MathUtil.limit(zRotationCorrected, 1.0) * 2
             }
             overPower = true
             angularPower = zRotationCorrected
