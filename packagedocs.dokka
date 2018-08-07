@@ -20,6 +20,12 @@ These filters are
 * High Pass
 * Moving Average
 
+These filters are 
+
+* Single Pole IIR
+* High Pass
+* Moving Average
+
 # Package com.jdroids.robotlib.gamepad
 
 This package contains an [EnhancedGamepad] class which enhances the existing gamepad from the ftc sdk.
