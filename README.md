@@ -20,4 +20,4 @@ Installation
 
 Documentation
 --
-The documentation is in source. At some point a seperate documentation source may be made available.
+The documentation is written in [Dokka](https://github.com/Kotlin/dokka). It can be found compiled [here](https://jdroids.github.io/robotlib/).
