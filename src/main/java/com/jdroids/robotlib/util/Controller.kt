@@ -2,7 +2,7 @@ package com.jdroids.robotlib.util
 
 /**
  * An interface for controllers. Controllers run control loops, the most command are PID controllers
- * and there variants, but this includes anything that is controlling an actuator in a separate
+ * and their variants, but this includes anything that is controlling an actuator in a separate
  * thread.
  */
 interface Controller {
