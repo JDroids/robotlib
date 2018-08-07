@@ -14,6 +14,12 @@ This class contains some classes that can be used when you want to quickly test 
 
 This class contains a simple framework for a filter. It has a few pre-written filters.
 
+These filters are 
+
+* Single Pole IIR
+* High Pass
+* Moving Average
+
 # Package com.jdroids.robotlib.gamepad
 
 This package contains an [EnhancedGamepad] class which enhances the existing gamepad from the ftc sdk.
