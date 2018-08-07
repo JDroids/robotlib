@@ -12,7 +12,13 @@ This class contains some classes that can be used when you want to quickly test 
 
 # Package com.jdroids.robotlib.filters
 
-This class contains a simple framework for a filter. It has a few pre-written filters.
+This class contains a simple framework for writing filters. It has a few pre-written filters.
+
+These filters are 
+
+* Single Pole IIR
+* High Pass
+* Moving Average
 
 # Package com.jdroids.robotlib.gamepad
 
