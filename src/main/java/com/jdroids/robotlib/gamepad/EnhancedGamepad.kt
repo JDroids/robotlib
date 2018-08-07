@@ -160,7 +160,7 @@ class EnhancedGamepad(private val gamepad: Gamepad) {
                 gamepad.right_stick_y
         }
 
-        return if (value < 0.02) 0.0f else value
+        return if (value < deadband) 0.0f else value
     }
 
     fun getTrigger(hand: Hand): Float {

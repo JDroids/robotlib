@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SimplePIDController.calculateFeedForward - </title>
+<link rel="stylesheet" href="..\..\style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">com.jdroids.robotlib.pid</a>&nbsp;/&nbsp;<a href="index.html">SimplePIDController</a>&nbsp;/&nbsp;<a href=".">calculateFeedForward</a><br/>
+<br/>
+<h1>calculateFeedForward</h1>
+<a name="com.jdroids.robotlib.pid.SimplePIDController$calculateFeedForward()"></a>
+<code><span class="keyword">protected</span> <span class="keyword">fun </span><span class="identifier">calculateFeedForward</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Calculate the feedforward terms (velocity and acceleration).</p>
+<p>If a different feed forward calculation is desired, the user can override this function and
+provide his or her own. This function  does no synchronization because the SimplePIDController
+class only calls it in synchronized code, so be careful if calling it oneself.</p>
+<p>If a velocity PID controller is being used, the V term should be set to 1 over the maximum
+setpoint for the output. If a position PID controller is being used, the V term should be set
+to 1 over the maximum speed for the output measured in setpoint units per this controller's
+update period (see the default period in this class's constructor).</p>
+</BODY>
+</HTML>

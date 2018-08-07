@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareDevice
 import com.qualcomm.robotcore.hardware.configuration.MotorConfigurationType
 
 /**
- * Allows [DcMotors][DcMotor] to be linked together
+ * Allows DcMotors to be linked together
  */
 class MotorGroup(vararg motors: DcMotor) : DcMotor {
     private val motors: Array<DcMotor> = Array(motors.size, {i -> motors[i]})
@@ -50,7 +50,7 @@ class MotorGroup(vararg motors: DcMotor) : DcMotor {
     /**
      * Sets the RunMode of each motor in the MotorGroup
      *
-     * @param runMode the wanted [RunMode][DcMotor.RunMode]
+     * @param runMode the wanted DcMotor.RunMode
      */
     override fun setMode(runMode: DcMotor.RunMode) {
         for (motor in motors) {

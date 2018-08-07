@@ -1,0 +1,122 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>PIDInterface - </title>
+<link rel="stylesheet" href="..\..\style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">com.jdroids.robotlib.pid</a>&nbsp;/&nbsp;<a href=".">PIDInterface</a><br/>
+<br/>
+<h1>PIDInterface</h1>
+<code><span class="keyword">interface </span><span class="identifier">PIDInterface</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span></code>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="get-a.html">getA</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getA</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="get-d.html">getD</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="get-error.html">getError</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getError</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="get-i.html">getI</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getI</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="get-p.html">getP</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getP</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="get-setpoint.html">getSetpoint</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getSetpoint</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="get-v.html">getV</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getV</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="reset.html">reset</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">reset</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="set-a.html">setA</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setA</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setA(kotlin.Double)/a">a</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="set-d.html">setD</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setD</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setD(kotlin.Double)/d">d</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="set-i.html">setI</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setI</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setI(kotlin.Double)/i">i</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="set-p.html">setP</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setP</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setP(kotlin.Double)/p">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="set-p-i-d.html">setPID</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setPID</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/p">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/i">i</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/d">d</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/v">v</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/a">a</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setPID</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setPID(kotlin.Double, kotlin.Double, kotlin.Double)/p">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setPID(kotlin.Double, kotlin.Double, kotlin.Double)/i">i</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setPID(kotlin.Double, kotlin.Double, kotlin.Double)/d">d</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="set-setpoint.html">setSetpoint</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setSetpoint</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setSetpoint(kotlin.Double)/setpoint">setpoint</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="set-v.html">setV</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setV</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.PIDInterface$setV(kotlin.Double)/v">v</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../-simple-p-i-d-controller/index.html">SimplePIDController</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SimplePIDController</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PIDInterface</span><span class="symbol">, </span><a href="../-p-i-d-output/index.html"><span class="identifier">PIDOutput</span></a></code>
+<p>Class implements a PIDVA Control Loop.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

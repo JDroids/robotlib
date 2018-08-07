@@ -1,0 +1,361 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SimplePIDController - </title>
+<link rel="stylesheet" href="..\..\style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">com.jdroids.robotlib.pid</a>&nbsp;/&nbsp;<a href=".">SimplePIDController</a><br/>
+<br/>
+<h1>SimplePIDController</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SimplePIDController</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-p-i-d-interface/index.html"><span class="identifier">PIDInterface</span></a><span class="symbol">, </span><a href="../-p-i-d-output/index.html"><span class="identifier">PIDOutput</span></a></code>
+<p>Class implements a PIDVA Control Loop.</p>
+<p>Creates a seperate thread which reads the given <a href="../-p-i-d-source/index.html">PIDSource</a> and takes care of the integral
+calculations, as well as writing the given <a href="../-p-i-d-output/index.html">PIDOutput</a>.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-absolute-tolerance/index.html">AbsoluteTolerance</a></td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">AbsoluteTolerance</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tolerance/index.html"><span class="identifier">Tolerance</span></a></code></td>
+</tr>
+<tr>
+<td>
+<a href="-null-tolerance/index.html">NullTolerance</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">NullTolerance</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tolerance/index.html"><span class="identifier">Tolerance</span></a></code>
+<p>Used internally for when Tolerance hasn't been set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-percentage-tolerance/index.html">PercentageTolerance</a></td>
+<td>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">PercentageTolerance</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tolerance/index.html"><span class="identifier">Tolerance</span></a></code></td>
+</tr>
+<tr>
+<td>
+<a href="-tolerance/index.html">Tolerance</a></td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Tolerance</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span></code>
+<p>Tolerance is the type of tolerance used to specify if the PID controller is on target.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-init-.html">&lt;init&gt;</a></td>
+<td>
+<code><span class="identifier">SimplePIDController</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$<init>(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, com.jdroids.robotlib.pid.PIDSource, com.jdroids.robotlib.pid.PIDOutput)/p">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$<init>(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, com.jdroids.robotlib.pid.PIDSource, com.jdroids.robotlib.pid.PIDOutput)/i">i</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span>&nbsp;<span class="symbol">=</span>&nbsp;0.0<span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$<init>(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, com.jdroids.robotlib.pid.PIDSource, com.jdroids.robotlib.pid.PIDOutput)/d">d</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span>&nbsp;<span class="symbol">=</span>&nbsp;0.0<span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$<init>(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, com.jdroids.robotlib.pid.PIDSource, com.jdroids.robotlib.pid.PIDOutput)/v">v</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span>&nbsp;<span class="symbol">=</span>&nbsp;0.0<span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$<init>(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, com.jdroids.robotlib.pid.PIDSource, com.jdroids.robotlib.pid.PIDOutput)/a">a</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span>&nbsp;<span class="symbol">=</span>&nbsp;0.0<span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$<init>(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, com.jdroids.robotlib.pid.PIDSource, com.jdroids.robotlib.pid.PIDOutput)/source">source</span><span class="symbol">:</span>&nbsp;<a href="../-p-i-d-source/index.html"><span class="identifier">PIDSource</span></a><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$<init>(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, com.jdroids.robotlib.pid.PIDSource, com.jdroids.robotlib.pid.PIDOutput)/output">output</span><span class="symbol">:</span>&nbsp;<a href="../-p-i-d-output/index.html"><span class="identifier">PIDOutput</span></a><span class="symbol">)</span></code>
+<p>Allocate a PID object with the given P, I, D, V, and A coefficients.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="pid-input.html">pidInput</a></td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">pidInput</span><span class="symbol">: </span><a href="../-p-i-d-source/index.html"><span class="identifier">PIDSource</span></a></code></td>
+</tr>
+<tr>
+<td>
+<a href="pid-output.html">pidOutput</a></td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">pidOutput</span><span class="symbol">: </span><a href="../-p-i-d-output/index.html"><span class="identifier">PIDOutput</span></a></code></td>
+</tr>
+<tr>
+<td>
+<a href="pid-write-mutex.html">pidWriteMutex</a></td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">pidWriteMutex</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/locks/ReentrantLock.html"><span class="identifier">ReentrantLock</span></a></code></td>
+</tr>
+<tr>
+<td>
+<a href="this-mutex.html">thisMutex</a></td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">thisMutex</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/locks/ReentrantLock.html"><span class="identifier">ReentrantLock</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="calculate.html">calculate</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">calculate</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Read the input, calculate the output accordingly, and write to the output. This should only be
+called by the PIDTask and is created during initialization.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="calculate-feed-forward.html">calculateFeedForward</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">calculateFeedForward</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Calculate the feedforward terms (velocity and acceleration).</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="disable.html">disable</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">disable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Stop running the SimplePIDController, this sets the output to zero before stopping.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="enable.html">enable</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">enable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Begin running the SimplePIDController.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get.html">get</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Return the current PID result. This is always centered on zero and constrained between the
+min and max outputs.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-a.html">getA</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getA</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Get the Feedforward Acceleration coefficient</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-continuous-error.html">getContinuousError</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getContinuousError</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$getContinuousError(kotlin.Double)/error">error</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Wraps error around for continuous inputs. The original error is returned if continuous mode is
+disabled. This is an unsynchronized function.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-d.html">getD</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getD</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Get the Derivative coefficient</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-delta-setpoint.html">getDeltaSetpoint</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getDeltaSetpoint</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Returns the change in setpoint over time of the SimplePIDController.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-error.html">getError</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getError</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Returns the current difference of the input from the setpoint.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-i.html">getI</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getI</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Get the Integral coefficient</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-p.html">getP</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getP</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Get the Proportional coefficient</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-setpoint.html">getSetpoint</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSetpoint</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Returns the current setpoint of the PID controller.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-v.html">getV</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getV</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code>
+<p>Get the Feedforward Velocity coefficient</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="is-enabled.html">isEnabled</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isEnabled</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Boolean</span></code>
+<p>Return true if SimplePIDController is enabled.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="on-target.html">onTarget</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onTarget</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Boolean</span></code>
+<p>Return true if the error is within the percentage of the total input range, determined by
+setTolerance. This assumes that the maximum and minimum input were set using setInput.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="pid-write.html">pidWrite</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">pidWrite</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$pidWrite(kotlin.Double)/output">output</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Passes the output directly to setSetpoint().</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="reset.html">reset</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">reset</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Reset the previous error, the integral term, and disable the controller.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-a.html">setA</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setA</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setA(kotlin.Double)/a">a</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the feed forward acceleration coefficient of the PID controller gain.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-absolute-tolerance.html">setAbsoluteTolerance</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setAbsoluteTolerance</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setAbsoluteTolerance(kotlin.Double)/absvalue">absvalue</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the absolute error which is considered tolerable for use with OnTarget.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-continuous.html">setContinuous</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setContinuous</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setContinuous(kotlin.Boolean)/continuous">continuous</span><span class="symbol">:</span>&nbsp;<span class="identifier">Boolean</span>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the PID controller to consider the input to be continuous. Rather than using the max and
+min input as constraints, it considers them to be the same point and automatically calculates
+the shortest route to the setpoint.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-d.html">setD</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setD</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setD(kotlin.Double)/d">d</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the derivative coefficient of the PID controller gain.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-enabled.html">setEnabled</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEnabled</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setEnabled(kotlin.Boolean)/enable">enable</span><span class="symbol">:</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the enabled state of the SimplePIDController.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-i.html">setI</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setI</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setI(kotlin.Double)/i">i</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the integral coefficient of the PID controller gain.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-input-range.html">setInputRange</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setInputRange</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setInputRange(kotlin.Double, kotlin.Double)/minimumInput">minimumInput</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setInputRange(kotlin.Double, kotlin.Double)/maximumInput">maximumInput</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Sets the maximum and minimum values expected from the input and setpoint.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-output-range.html">setOutputRange</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setOutputRange</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setOutputRange(kotlin.Double, kotlin.Double)/minimumOutput">minimumOutput</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setOutputRange(kotlin.Double, kotlin.Double)/maximumOutput">maximumOutput</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Sets the minimum and maximum values to write.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-p.html">setP</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setP</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setP(kotlin.Double)/p">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the proportional coefficient of the PID controller gain.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-p-i-d.html">setPID</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setPID</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/p">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/i">i</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/d">d</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/v">v</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setPID(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/a">a</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setPID</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setPID(kotlin.Double, kotlin.Double, kotlin.Double)/p">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setPID(kotlin.Double, kotlin.Double, kotlin.Double)/i">i</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setPID(kotlin.Double, kotlin.Double, kotlin.Double)/d">d</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="set-percent-tolerance.html">setPercentTolerance</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setPercentTolerance</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setPercentTolerance(kotlin.Double)/percentage">percentage</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the percentage error which is considered tolerable for use with OnTarget. (Input of 15.0 =
+15 percent)</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-setpoint.html">setSetpoint</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setSetpoint</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setSetpoint(kotlin.Double)/setpoint">setpoint</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the setpoint for the SimplePIDController.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="set-v.html">setV</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setV</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController$setV(kotlin.Double)/v">v</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<p>Set the feed forward velocity coefficient of the PID controller gain.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="clamp.html">clamp</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">clamp</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController.Companion$clamp(kotlin.Double, kotlin.Double, kotlin.Double)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController.Companion$clamp(kotlin.Double, kotlin.Double, kotlin.Double)/low">low</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.pid.SimplePIDController.Companion$clamp(kotlin.Double, kotlin.Double, kotlin.Double)/high">high</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Double</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
