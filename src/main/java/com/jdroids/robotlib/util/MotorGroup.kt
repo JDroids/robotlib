@@ -163,7 +163,7 @@ class MotorGroup(vararg motors: DcMotor) : DcMotor {
 
     override fun getMotorType(): MotorConfigurationType = motors[0].motorType
 
-    override fun getPortNumber(): Int = motors[0].portNumber
+        override fun getPortNumber(): Int = motors[0].portNumber
 
     override fun getPowerFloat(): Boolean = motors[0].powerFloat
 
