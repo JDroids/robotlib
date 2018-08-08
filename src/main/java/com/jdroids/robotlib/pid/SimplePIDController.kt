@@ -3,6 +3,7 @@ package com.jdroids.robotlib.pid
 import com.jdroids.robotlib.util.EnhancedElapsedTime
 import com.jdroids.robotlib.filters.LinearDigitalFilter
 import com.jdroids.robotlib.util.BoundaryException
+import com.qualcomm.robotcore.hardware.PIDCoefficients
 import java.util.concurrent.locks.ReentrantLock
 import java.lang.Compiler.disable
 import java.lang.Compiler.enable
@@ -16,7 +17,16 @@ import java.lang.Compiler.enable
  * Creates a seperate thread which reads the given [PIDSource] and takes care of the integral
  * calculations, as well as writing the given [PIDOutput].
  */
-open class SimplePIDController : PIDInterface, PIDOutput {
+open class SimplePIDController//Save original source
+/**
+ * Allocate a PID object with the given P, I, D, V, and A coefficients.
+ *
+ * @param p the proportional coefficient
+ * @param i the integral coefficient (optional, defaults to 0)
+ * @param d the derivative coefficient (optional, defaults to 0)
+ * @param v the feedforward velocity coefficient (optional, defaults to 0)
+ * @param a the feedforward acceleration coefficient (optional, defaults to 0)
+ */(source: PIDSource, output: PIDOutput, p: Double, i: Double = 0.0, d: Double = 0.0, v: Double = 0.0, a: Double = 0.0) : PIDInterface, PIDOutput {
     //Coefficient for proportional control
     private var pCoefficient = 0.0
 
@@ -75,7 +85,7 @@ open class SimplePIDController : PIDInterface, PIDOutput {
     private var currentError = 0.0
     private var result = 0.0
 
-    private var origSource: PIDSource
+    private var origSource: PIDSource = source
 
     protected var thisMutex = ReentrantLock()
 
@@ -84,7 +94,7 @@ open class SimplePIDController : PIDInterface, PIDOutput {
     protected var pidWriteMutex = ReentrantLock()
 
     protected var pidInput: PIDSource
-    protected var pidOutput: PIDOutput
+    protected var pidOutput: PIDOutput = output
     private val timer = EnhancedElapsedTime()
     private val filter: LinearDigitalFilter
 
@@ -92,6 +102,17 @@ open class SimplePIDController : PIDInterface, PIDOutput {
     private var totalError = 0.0
 
     private var lastTime = timer.seconds()
+
+    /**
+     * Instead of using individual P, I, and D coefficients [SimplePIDController] can also be
+     * constructed with the inbuilt PIDCoefficients class.
+     *
+     * @param
+     */
+    constructor(pidSource: PIDSource, pidOutput: PIDOutput, pidCoefficients: PIDCoefficients,
+                v: Double=0.0, a: Double=0.0) :
+            this(pidSource, pidOutput, pidCoefficients.p, pidCoefficients.i, pidCoefficients.d, v,
+                    a)
 
     /**
      * Tolerance is the type of tolerance used to specify if the PID controller is on target.
@@ -121,35 +142,9 @@ open class SimplePIDController : PIDInterface, PIDOutput {
     }
 
     /**
-     * Allocate a PID object with the given P, I, D, V, and A coefficients.
-     *
-     * @param p the proportional coefficient
-     * @param i the integral coefficient (optional, defaults to 0)
-     * @param d the derivative coefficient (optional, defaults to 0)
-     * @param v the feedforward velocity coefficient (optional, defaults to 0)
-     * @param a the feedforward acceleration coefficient (optional, defaults to 0)
+     * Read the input, calculate the output accordingly, and write to the output.
      */
-    constructor(p: Double, i: Double=0.0, d: Double=0.0, v: Double=0.0, a: Double=0.0,
-                source: PIDSource, output: PIDOutput) {
-        timer.reset()
-        setPID(p, i, d, v, a)
-
-        //Save original source
-        origSource = source
-
-        filter = LinearDigitalFilter.movingAverage(origSource, 1)
-        pidInput = filter
-
-        pidOutput = output
-
-        tolerance = NullTolerance()
-    }
-
-    /**
-     * Read the input, calculate the output accordingly, and write to the output. This should only be
-     * called by the PIDTask and is created during initialization.
-     */
-    protected fun calculate() {
+    fun calculate() {
         val isEnabled: Boolean
 
         thisMutex.lock()
@@ -742,5 +737,13 @@ open class SimplePIDController : PIDInterface, PIDOutput {
     companion object {
         fun clamp(value: Double, low: Double, high: Double): Double =
                 Math.max(low, Math.min(value, high))
+    }
+
+    init {
+        timer.reset()
+        setPID(p, i, d, v, a)
+        filter = LinearDigitalFilter.movingAverage(origSource, 1)
+        pidInput = filter
+        tolerance = NullTolerance()
     }
 }

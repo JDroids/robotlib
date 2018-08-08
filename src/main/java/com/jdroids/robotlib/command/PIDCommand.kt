@@ -34,7 +34,7 @@ abstract class PIDCommand : Command {
      * @param v the feedforward velocity value
      * @param a the feedforward acceleration value
      */
-    constructor(name: String, p: Double, i: Double, d: Double, v: Double, a: Double) {
+    constructor(p: Double, i: Double, d: Double, v: Double=0.0, a: Double=0.0) {
         controller = SimplePIDController(p, i, d, v, a, source, output)
     }
 

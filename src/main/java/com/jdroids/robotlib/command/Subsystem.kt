@@ -16,10 +16,12 @@ import com.qualcomm.robotcore.hardware.HardwareMap
  *
  * @see Command
  */
-abstract class Subsystem
-/**
- * Creates a subsystem.
- */() {
+abstract class Subsystem {
+    /**
+     * Can be used to initialize hardware using the lazy kotlin keyword
+     */
+    protected var hardwareMap: HardwareMap? = null
+
     /**
      * Whether or not [getDefaultCommand] was called.
      */
@@ -51,6 +53,7 @@ abstract class Subsystem
      * @param hardwareMap the hardware map to initialize the hardware with
      */
     open fun initHardware(hardwareMap: HardwareMap) {
+        this.hardwareMap = hardwareMap
         Scheduler.registerSubsystem(this)
     }
 

@@ -181,7 +181,7 @@ abstract class Command {
     /**
      * A shadow method called before [initialize]
      */
-    internal open fun initializeShadowMethod() {}
+    internal fun initializeShadowMethod() {}
 
     /**
      * The execute command is called repeatedly until this command either finishes or is canceled.
@@ -191,7 +191,7 @@ abstract class Command {
     /**
      * A shadow method called before [execute]
      */
-    internal open fun executeShadowMethod() {}
+    internal fun executeShadowMethod() {}
 
     /**
      * Returns whether this command is finished. If it is, then the command will be removed and
@@ -215,7 +215,7 @@ abstract class Command {
     /**
      * A shadow method called after [end]
      */
-    protected open fun endShadowMethod() {}
+    protected fun endShadowMethod() {}
 
     /**
      * Called when the command ends because something called [cancel] or another command shared the
@@ -233,7 +233,7 @@ abstract class Command {
     /**
      * A shadow method called after [interrupted]
      */
-    protected open fun interruptedShadowMethod() {}
+    protected fun interruptedShadowMethod() {}
 
     /**
      * Called to indicate that the timer should start. This is called right before [initialize] is,
@@ -375,7 +375,7 @@ abstract class Command {
     }
 
     @Synchronized
-    internal open fun cancelShadowMethod() {
+    internal fun cancelShadowMethod() {
         if (isRunning()) {
             canceled = true
         }
