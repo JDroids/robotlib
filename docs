@@ -281,3 +281,33 @@ footer {
         color:#444;
     }
 }
+
+body {
+	margin-top: 40px;
+}
+
+.header {
+	content: "RobotLib";
+	display: block;
+	font-family: "Fira mono", monospace;
+	font-size: 62;
+	position: absolute;
+	top: 0px;
+	float: top;
+}
+
+a:link {
+    color:darkgreen;
+}
+
+a:visited {
+    color:green;
+}
+
+a:hover {
+    color:red;
+}
+
+a:active {
+    color:darkgreen;
+}
