@@ -1,6 +1,6 @@
-What is robotlib?
+What is RobotLib?
 ==
-Robotlib is a library for programming FTC robots. Unlike FRC, FTC only contains 
+RobotLib is a library for programming FTC robots. Unlike FRC, FTC only contains 
 a very minimal SDK. This library aims to address this issue. As this library was
 inspired by the FRC SDK, this library was inspired by WPILib. 
 
@@ -15,11 +15,11 @@ Installation
 7. Go to the Dependencies tab.
 8. Press the plus in the top right, and select Module Dependency.
 9. Then select `:robotlib`, and press OK twice.
-10. You should have robotlib installed! If you have any questions, ask in the programming channel of the [FTC Discord](https://discord.gg/8v3cbkj)!
+10. You should have RobotLib installed! If you have any questions, ask in the programming channel of the [FTC Discord](https://discord.gg/8v3cbkj)!
 
 Documentation
 --
-The documentation is written in the [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html) format and is compiled into a series of webpages with [Dokka](https://github.com/Kotlin/dokka). The documentation can be found compiled [here](https://jdroids.github.io/robotlib/).
+The documentation for RobotLib is written in the [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html) format and is compiled into a series of webpages with [Dokka](https://github.com/Kotlin/dokka). The documentation can be found compiled [here](https://jdroids.github.io/robotlib/).
 
 Samples
 --

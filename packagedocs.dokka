@@ -1,10 +1,10 @@
 # Module robotlib
 
-Robotlib is a library for programming FTC robots. Unlike FRC, FTC only contains a very minimal SDK. This library aims to address this issue. As this library was inspired by the FRC SDK, some aspects of this library works similarly to WPILib.
+RobotLib is a library for programming FTC robots. Unlike FRC, FTC only contains a very minimal SDK. This library aims to address this issue. As this library was inspired by the FRC SDK, some aspects of this library works similarly to WPILib.
 
 # Package com.jdroids.robotlib.command
 
-This package contains the command framework of robotlib. The [Command] class is the heart of this framework. The command framework contains a way to encapsulate actions that interact with specific [subsystems][Subsystem] on the robot. This command framework also contains a [RobotTemplate] class which is meant to contain all of the [subsystems][Subsystem] in one unified place.
+This package contains the command framework of RobotLib. The [Command] class is the heart of this framework. The command framework contains a way to encapsulate actions that interact with specific [subsystems][Subsystem] on the robot. This command framework also contains a [RobotTemplate] class which is meant to contain all of the [subsystems][Subsystem] in one unified place.
 
 # Package com.jdroids.robotlib.drive
 
