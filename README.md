@@ -1,8 +1,8 @@
 What is RobotLib?
 ==
 RobotLib is a library for programming FTC robots. Unlike FRC, FTC only contains 
-a very minimal SDK. This library aims to address this issue. As this library was
-inspired by the FRC SDK, this library was inspired by WPILib. 
+a very minimal SDK. This library aims to address this issue. This library was
+inspired by the Java FRC SDK, which can be found [here](https://github.com/wpilibsuite/allwpilib/tree/master/wpilibj). 
 
 Installation
 --
