@@ -43,6 +43,15 @@ called over and over until <a href="-command/is-finished.html">isFinished</a> re
 </tr>
 <tr>
 <td>
+<a href="-illegal-use-of-command-exception/index.html">IllegalUseOfCommandException</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">IllegalUseOfCommandException</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span></code>
+<p>This exception will be thrown if a command is used illegally. There are several ways for this to
+happen.</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="-instant-command/index.html">InstantCommand</a></td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">InstantCommand</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-command/index.html"><span class="identifier">Command</span></a></code>
@@ -148,20 +157,6 @@ a <a href="-command-group/index.html">CommandGroup</a> to pause for a moment.</p
 <p>This command will only finish if whatever <a href="-command-group/index.html">CommandGroup</a> it is in has no active children.
 If it is not a part of a <a href="-command-group/index.html">CommandGroup</a>, then it will finish immediately. If it is itself
 an active child, then the <a href="-command-group/index.html">CommandGroup</a> will never end.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Exceptions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<a href="-illegal-use-of-command-exception/index.html">IllegalUseOfCommandException</a></td>
-<td>
-<code><span class="keyword">class </span><span class="identifier">IllegalUseOfCommandException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/lang/RuntimeException.html"><span class="identifier">RuntimeException</span></a></code>
-<p>This exception will be thrown if a command is used illegally. There are several ways for this to
-happen.</p>
 </td>
 </tr>
 </tbody>
