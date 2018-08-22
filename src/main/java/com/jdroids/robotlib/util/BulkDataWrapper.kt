@@ -36,7 +36,7 @@ class BulkDataWrapper
      *
      * @return the encoder position of the motor
      */
-    fun getMotorCurrentPosition(motor: DcMotor) = getMotorCurrentPosition(motor.portNumber)
+    fun getMotorCurrentPosition(motor: DcMotor): Int = getMotorCurrentPosition(motor.portNumber)
 
     /**
      * Returns the encoder position of a motor of a given port.
@@ -45,7 +45,7 @@ class BulkDataWrapper
      *
      * @return the encoder position of the motor plugged into the port
      */
-    fun getMotorCurrentPosition(motorNum: Int) = response.getEncoder(motorNum)
+    fun getMotorCurrentPosition(motorNum: Int): Int = response.getEncoder(motorNum)
 
     /**
      * Returns the velocity of a given DcMotor
@@ -54,7 +54,7 @@ class BulkDataWrapper
      *
      * @return the motor's velocity (signed) in encoder counts per second
      */
-    fun getMotorVelocity(motor: DcMotor) = getMotorVelocity(motor.portNumber)
+    fun getMotorVelocity(motor: DcMotor): Int = getMotorVelocity(motor.portNumber)
 
     /**
      * Returns the velocity of a motor of a given port.
@@ -63,7 +63,7 @@ class BulkDataWrapper
      *
      * @return the motor's velocity (signed) in encoder counts per second
      */
-    fun getMotorVelocity(motorNum: Int) = response.getVelocity(motorNum)
+    fun getMotorVelocity(motorNum: Int): Int = response.getVelocity(motorNum)
 
     /**
      * Returns whether or not a motor passed to it is at its target position.
@@ -116,9 +116,8 @@ class BulkDataWrapper
      *
      * @return the value of the AnalogInput in volts
      */
-    fun getAnalogInputValue(port: Int): Double {
-        return response.getAnalogInput(port).toDouble() * 1000
-    }
+    fun getAnalogInputValue(port: Int): Double = response.getAnalogInput(port).toDouble() * 1000
+
 
     /**
      * Returns the state of a DigitalChannel passed to it
@@ -149,7 +148,7 @@ class BulkDataWrapper
      *
      * @return the state of the digital channel
      */
-    fun getDigitalChannelState(port: Int) = response.getDigitalInput(port)
+    fun getDigitalChannelState(port: Int): Boolean = response.getDigitalInput(port)
 
 
     /**
