@@ -31,6 +31,10 @@ object Scheduler {
      */
     private val gamepads = Set<EnhancedGamepad>()
     /**
+     * A set of all the [RobotTemplates][RobotTemplate]
+     */
+    private val robots = Set<RobotTemplate>()
+    /**
      * The first [Command] in the list
      */
     private var firstCommand: LinkedListElement? = null
@@ -65,6 +69,10 @@ object Scheduler {
      */
     fun add(command: Command) {
         additions.add(command)
+    }
+
+    internal fun registerRobotTemplate(template: RobotTemplate) {
+        this.robots.add(template)
     }
 
     /**
@@ -143,7 +151,13 @@ object Scheduler {
 
         //Update the controller values
 
-        // Call every subsystem's periodic method
+        //Call every robot's periodic method
+        val robotElements = robots.getElements()
+        while (robotElements.hasMoreElements()) {
+            robotElements.nextElement().periodic()
+        }
+
+        //Call every subsystem's periodic method
         val subsystemElements = subsystems.getElements()
         while (subsystemElements.hasMoreElements()) {
             subsystemElements.nextElement().periodic()

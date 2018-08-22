@@ -1,5 +1,7 @@
 package com.jdroids.robotlib.command
 
+import com.jdroids.robotlib.util.getActiveOpMode
+import com.jdroids.robotlib.util.getActiveOpModeManagerImpl
 import com.qualcomm.robotcore.eventloop.opmode.OpMode
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManagerNotifier
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeManagerImpl
@@ -27,13 +29,10 @@ abstract class RobotTemplate {
      * at the beginning of the OpMode.
      */
     private fun initHardware() {
-        val opModeManager: OpModeManagerImpl =
-                OpModeManagerImpl.getOpModeManagerOfActivity(AppUtil.getInstance().activity)
-
         val subsystems = Scheduler.getSubsystems()
 
         for (subsystem in subsystems) {
-            subsystem.initHardware(opModeManager.activeOpMode.hardwareMap)
+            subsystem.initHardware(getActiveOpMode().hardwareMap)
         }
     }
 
@@ -44,6 +43,11 @@ abstract class RobotTemplate {
         initHardware()
         updateThread.start()
     }
+
+    /**
+     * When the run function of the scheduler is called this method will be called
+     */
+    open fun periodic() {}
 
     /**
      * This method is meant to be called at the beginning of each autonomous program, and should do
@@ -67,16 +71,11 @@ abstract class RobotTemplate {
 
     private inner class IsRunningListener : OpModeManagerNotifier, OpModeManagerNotifier.Notifications {
         override fun registerListener(listener: OpModeManagerNotifier.Notifications?): OpMode {
-            val opModeManager =
-                    OpModeManagerImpl.getOpModeManagerOfActivity(AppUtil.getInstance().activity)
-            opModeManager.registerListener(listener)
-            return opModeManager.activeOpMode
+            return getActiveOpMode()
         }
 
         override fun unregisterListener(listener: OpModeManagerNotifier.Notifications?) {
-            val opModeManager =
-                    OpModeManagerImpl.getOpModeManagerOfActivity(AppUtil.getInstance().activity)
-            opModeManager.unregisterListener(listener)
+            getActiveOpModeManagerImpl().unregisterListener(listener)
         }
 
         var isOpModeRunning = false
@@ -98,13 +97,10 @@ abstract class RobotTemplate {
     }
 
     private inner class UpdateThread : Thread() {
-        val opModeManager: OpModeManagerImpl =
-                OpModeManagerImpl.getOpModeManagerOfActivity(AppUtil.getInstance().activity)
-
         val listener = IsRunningListener()
 
         override fun run() {
-            opModeManager.registerListener(listener)
+            getActiveOpModeManagerImpl().registerListener(listener)
             while (!Thread.currentThread().isInterrupted) {
                 val shouldRun = mode == Mode.AUTONOMOUS_INIT || mode == Mode.RUNNING
                 if (listener.isOpModeRunning && shouldRun) {

@@ -40,7 +40,7 @@ abstract class PIDSubsystem : Subsystem {
      * @param a the feedforward acceleration value
      */
     constructor(name: String, p: Double, i: Double, d: Double, v: Double, a: Double) {
-        controller = SimplePIDController(p, i, d, v, a, source, output)
+        controller = SimplePIDController(source, output, p, i, d, v, a)
     }
 
     /**
