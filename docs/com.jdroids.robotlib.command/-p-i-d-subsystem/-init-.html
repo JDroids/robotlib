@@ -2,26 +2,18 @@
 <HEAD>
 <meta charset="UTF-8">
 <title>PIDSubsystem.<init> - </title>
-<link rel="stylesheet" href="..\..\style.css">
+<link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
 <div class='header'><a href="https://jdroids.github.io/robotlib">RobotLib</a></div>
 <a href="../index.html">com.jdroids.robotlib.command</a>&nbsp;/&nbsp;<a href="index.html">PIDSubsystem</a>&nbsp;/&nbsp;<a href=".">&lt;init&gt;</a><br/>
 <br/>
 <h1>&lt;init&gt;</h1>
-<code><span class="identifier">PIDSubsystem</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.String, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/name">name</span><span class="symbol">:</span>&nbsp;<span class="identifier">String</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.String, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/p">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.String, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/i">i</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.String, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/d">d</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.String, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/v">v</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.String, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/a">a</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span></code>
-<p>Instantiates a <a href="index.html">PIDSubsystem</a> that will use the given p, i, d, v, and a values.</p>
-<h3>Parameters</h3>
-
-<p><a name="p"></a>
-<code>p</code> - the proportional value
-<p><a name="i"></a>
-<code>i</code> - the integral value
-<p><a name="d"></a>
-<code>d</code> - the derivative value
-<p><a name="v"></a>
-<code>v</code> - the feedforward velocity value
-<p><a name="a"></a>
-<code>a</code> - the feedforward acceleration value
+<code><span class="identifier">PIDSubsystem</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.Function0((kotlin.Double)), kotlin.Function1((kotlin.Double, kotlin.Unit)), , kotlin.Double, kotlin.Double)/input">input</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.Function0((kotlin.Double)), kotlin.Function1((kotlin.Double, kotlin.Unit)), , kotlin.Double, kotlin.Double)/output">output</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">Double</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Unit</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.Function0((kotlin.Double)), kotlin.Function1((kotlin.Double, kotlin.Unit)), , kotlin.Double, kotlin.Double)/pidCoefficients">pidCoefficients</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.Function0((kotlin.Double)), kotlin.Function1((kotlin.Double, kotlin.Unit)), , kotlin.Double, kotlin.Double)/v">v</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span>&nbsp;<span class="symbol">=</span>&nbsp;0.0<span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.command.PIDSubsystem$<init>(kotlin.Function0((kotlin.Double)), kotlin.Function1((kotlin.Double, kotlin.Unit)), , kotlin.Double, kotlin.Double)/a">a</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span>&nbsp;<span class="symbol">=</span>&nbsp;0.0<span class="symbol">)</span></code>
+<p>This class is designed to handle the case where there is a <a href="../-subsystem/index.html">Subsystem</a> which uses a single
+<a href="../../com.jdroids.robotlib.pid/-simple-p-i-d-controller/index.html">SimplePIDController</a> almost constantly (for instance, an elevator which attempts to stay at a
+constant height).</p>
+<p>It provides some convinience methods to run an internal <a href="../../com.jdroids.robotlib.pid/-simple-p-i-d-controller/index.html">SimplePIDController</a>. It also allows
+access to the internal <a href="../../com.jdroids.robotlib.pid/-simple-p-i-d-controller/index.html">SimplePIDController</a> in order to give total control to the programmer.</p>
 </BODY>
 </HTML>

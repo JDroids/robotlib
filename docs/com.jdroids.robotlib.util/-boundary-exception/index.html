@@ -6,6 +6,7 @@
 </HEAD>
 <BODY>
 <div class='header'><a href="https://jdroids.github.io/robotlib">RobotLib</a></div>
+<div class='header'><a href="https://jdroids.github.io/robotlib">RobotLib</a></div>
 <a href="../index.html">com.jdroids.robotlib.util</a>&nbsp;/&nbsp;<a href=".">BoundaryException</a><br/>
 <br/>
 <h1>BoundaryException</h1>
@@ -22,7 +23,7 @@
 <td>
 <a href="-init-.html">&lt;init&gt;</a></td>
 <td>
-<code><span class="identifier">BoundaryException</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.util.BoundaryException$<init>(kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">String</span><span class="symbol">)</span></code>
+<code><span class="identifier">BoundaryException</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.util.Boundary$<init>(kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">String</span><span class="symbol">)</span></code>
 <p>This exception represents an error in which a lower limit was set as higher than an upper limit.</p>
 </td>
 </tr>
@@ -35,7 +36,7 @@
 <td>
 <a href="assert-within-bounds.html">assertWithinBounds</a></td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">assertWithinBounds</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.util.BoundaryException.Companion$assertWithinBounds(kotlin.Double, kotlin.Double, kotlin.Double)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.util.BoundaryException.Companion$assertWithinBounds(kotlin.Double, kotlin.Double, kotlin.Double)/lower">lower</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.util.BoundaryException.Companion$assertWithinBounds(kotlin.Double, kotlin.Double, kotlin.Double)/upper">upper</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
+<code><span class="keyword">fun </span><span class="identifier">assertWithinBounds</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.util.Boundary.Companion$assertWithinBounds(kotlin.Double, kotlin.Double, kotlin.Double)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.util.Boundary.Companion$assertWithinBounds(kotlin.Double, kotlin.Double, kotlin.Double)/lower">lower</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.util.Boundary.Companion$assertWithinBounds(kotlin.Double, kotlin.Double, kotlin.Double)/upper">upper</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code>
 <p>Make sure that the given value is between the upper and lower bounds, and throw an exception if
 they are not.</p>
 </td>
@@ -44,7 +45,7 @@ they are not.</p>
 <td>
 <a href="get-message.html">getMessage</a></td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">getMessage</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.util.BoundaryException.Companion$getMessage(kotlin.Double, kotlin.Double, kotlin.Double)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.util.BoundaryException.Companion$getMessage(kotlin.Double, kotlin.Double, kotlin.Double)/lower">lower</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.util.BoundaryException.Companion$getMessage(kotlin.Double, kotlin.Double, kotlin.Double)/upper">upper</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code>
+<code><span class="keyword">fun </span><span class="identifier">getMessage</span><span class="symbol">(</span><span class="identifier" id="com.jdroids.robotlib.util.Boundary.Companion$getMessage(kotlin.Double, kotlin.Double, kotlin.Double)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.util.Boundary.Companion$getMessage(kotlin.Double, kotlin.Double, kotlin.Double)/lower">lower</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">, </span><span class="identifier" id="com.jdroids.robotlib.util.Boundary.Companion$getMessage(kotlin.Double, kotlin.Double, kotlin.Double)/upper">upper</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code>
 <p>Returns the message for a boundary exception. Used to keep the message consistent across all
 boundary exceptions.</p>
 </td>

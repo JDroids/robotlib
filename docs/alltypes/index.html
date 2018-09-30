@@ -2,21 +2,19 @@
 <HEAD>
 <meta charset="UTF-8">
 <title>alltypes - </title>
-<link rel="stylesheet" href="..\style.css">
+<link rel="stylesheet" href="../style.css">
 </HEAD>
 <BODY>
 <div class='header'><a href="https://jdroids.github.io/robotlib">RobotLib</a></div>
-<p>
-RobotLib is a library for programming FTC robots. Unlike FRC, FTC only contains a very minimal SDK. This library aims to address this issue. As this library was inspired by the FRC SDK, some aspects of this library works similarly to WPILib.
-</p>
+<p>RobotLib is a library for programming FTC robots. Unlike FRC, FTC only contains a very minimal SDK. This library aims to address this issue. As this library was inspired by the FRC SDK, some aspects of this library works similarly to WPILib.</p>
 <h3>All Types</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<a href="../com.jdroids.robotlib.util/-boundary-exception/index.html">com.jdroids.robotlib.util.BoundaryException</a></td>
+<a href="../com.jdroids.robotlib.util/-boundary/index.html">com.jdroids.robotlib.util.Boundary</a></td>
 <td>
-<p>This exception represents an error in which a lower limit was set as higher than an upper limit.</p>
+<p>This class is supposed to represent a boundary between two numbers.</p>
 </td>
 </tr>
 <tr>
@@ -93,13 +91,6 @@ skid-steer, and more.</p>
 </tr>
 <tr>
 <td>
-<a href="../com.jdroids.robotlib.filters/-filter/index.html">com.jdroids.robotlib.filters.Filter</a></td>
-<td>
-<p>Superclass for filters</p>
-</td>
-</tr>
-<tr>
-<td>
 <a href="../com.jdroids.robotlib.command/-illegal-use-of-command-exception/index.html">com.jdroids.robotlib.command.IllegalUseOfCommandException</a></td>
 <td>
 <p>This exception will be thrown if a command is used illegally. There are several ways for this to
@@ -115,13 +106,6 @@ happen.</p>
 </tr>
 <tr>
 <td>
-<a href="../com.jdroids.robotlib.filters/-linear-digital-filter/index.html">com.jdroids.robotlib.filters.LinearDigitalFilter</a></td>
-<td>
-<p>Create a linear FIR or IIR filter.</p>
-</td>
-</tr>
-<tr>
-<td>
 <a href="../com.jdroids.robotlib.command/-linked-list-element/index.html">com.jdroids.robotlib.command.LinkedListElement</a></td>
 <td>
 <p>An element that is in a LinkedList.</p>
@@ -131,7 +115,7 @@ happen.</p>
 <td>
 <a href="../com.jdroids.robotlib.util/-math-util/index.html">com.jdroids.robotlib.util.MathUtil</a></td>
 <td>
-<p>A singleton that contains a bunch of stuff necessary for math.</p>
+<p>A singleton that contains a bunch of math lambdas</p>
 </td>
 </tr>
 <tr>
@@ -152,20 +136,6 @@ happen.</p>
 <td>
 <a href="../com.jdroids.robotlib.pid/-p-i-d-interface/index.html">com.jdroids.robotlib.pid.PIDInterface</a></td>
 <td>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../com.jdroids.robotlib.pid/-p-i-d-output/index.html">com.jdroids.robotlib.pid.PIDOutput</a></td>
-<td>
-<p>This interface allows PIDController to write it's results to its output.</p>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../com.jdroids.robotlib.pid/-p-i-d-source/index.html">com.jdroids.robotlib.pid.PIDSource</a></td>
-<td>
-<p>This interface allows for <a href="#">PIDController</a> to automatically read from this object.</p>
 </td>
 </tr>
 <tr>
@@ -214,7 +184,9 @@ commands with conflicting requirements running.</p>
 <td>
 <a href="../com.jdroids.robotlib.pid/-simple-p-i-d-controller/index.html">com.jdroids.robotlib.pid.SimplePIDController</a></td>
 <td>
-<p>Class implements a PIDVA Control Loop.</p>
+<p>This class is meant to implement a fairly simple PID controller (with optional feedforward
+elements). It takes a value from <a href="../com.jdroids.robotlib.pid/-simple-p-i-d-controller/input.html">input</a>, does the necessary calculations to it to get
+<a href="../com.jdroids.robotlib.pid/-simple-p-i-d-controller/result.html">result</a>, and then passes <a href="../com.jdroids.robotlib.pid/-simple-p-i-d-controller/result.html">result</a> to the <a href="../com.jdroids.robotlib.pid/-simple-p-i-d-controller/output.html">output</a> lambda.</p>
 </td>
 </tr>
 <tr>
