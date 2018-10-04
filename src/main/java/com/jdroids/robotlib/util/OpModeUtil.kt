@@ -9,7 +9,7 @@ import org.firstinspires.ftc.robotcore.internal.system.AppUtil
 fun getActiveOpMode(): OpMode = getActiveOpModeManagerImpl().activeOpMode
 
 fun getActiveOpModeManagerImpl(): OpModeManagerImpl = getActiveOpModeManagerImplFromActivity(
-        AppUtil.getInstance().activity)
+        AppUtil.getInstance()!!.activity)
 
 private fun getActiveOpModeManagerImplFromActivity(activity: Activity): OpModeManagerImpl =
         OpModeManagerImpl.getOpModeManagerOfActivity(activity)
