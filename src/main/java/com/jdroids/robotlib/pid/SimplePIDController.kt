@@ -198,20 +198,20 @@ open class SimplePIDController
      * @return Error for continuous inputs.
      */
     protected fun getContinuousError(error: Double): Double {
-        var error = error
+        var errorMutable = error
         val inputRange = (inputBoundary?.upper ?: 0.0) - (inputBoundary?.lower ?: 0.0)
         if (continuous && inputRange > 0) {
-            error %= inputRange
-            if (Math.abs(error) > inputRange / 2) {
-                return if (error > 0) {
-                    error - inputRange
+            errorMutable %= inputRange
+            if (Math.abs(errorMutable) > inputRange / 2) {
+                return if (errorMutable > 0) {
+                    errorMutable - inputRange
                 }
                 else {
-                    error + inputRange
+                    errorMutable + inputRange
                 }
             }
         }
-        return error
+        return errorMutable
     }
 
     /**
