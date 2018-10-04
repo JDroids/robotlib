@@ -5,11 +5,12 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode
 import com.qualcomm.robotcore.hardware.HardwareDevice
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeManagerImpl
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil
+import java.lang.IllegalArgumentException
 
 fun getActiveOpMode(): OpMode = getActiveOpModeManagerImpl().activeOpMode
 
 fun getActiveOpModeManagerImpl(): OpModeManagerImpl = getActiveOpModeManagerImplFromActivity(
-        AppUtil.getInstance()!!.activity)
+        AppUtil.getInstance().activity ?: throw IllegalArgumentException("Activity is null"))
 
 private fun getActiveOpModeManagerImplFromActivity(activity: Activity): OpModeManagerImpl =
         OpModeManagerImpl.getOpModeManagerOfActivity(activity)
