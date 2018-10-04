@@ -11,11 +11,32 @@ Installation
 3. Press File -> New -> Import Module.
 4. Select wherever you cloned this repository. (You may get an error; this is okay, ignore it.)
 5. Press Finish.
-6. Right click the TeamCode module in the Project Browser. Press Open Module Settings.
-7. Go to the Dependencies tab.
-8. Press the plus in the top right, and select Module Dependency.
-9. Then select `:robotlib`, and press OK twice.
-10. You should have RobotLib installed! If you have any questions, ask in the programming channel of the [FTC Discord](https://discord.gg/8v3cbkj)!
+6. Then modify your project `build.gradle` to look like this.
+```
+buildscript {
+    ext.kotlin_version = '1.2.71' //this line
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" //this line
+    }
+}
+//The lines after this
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+```
+7. Right click the TeamCode module in the Project Browser. Press Open Module Settings.
+8. Go to the Dependencies tab.
+9. Press the plus in the top right, and select Module Dependency.
+10. Then select `:robotlib`, and press OK twice.
+11. You should have RobotLib installed! If you have any questions, ask in the programming channel of the [FTC Discord](https://discord.gg/8v3cbkj)!
 
 Documentation
 --
