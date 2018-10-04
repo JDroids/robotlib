@@ -14,5 +14,5 @@ fun getActiveOpModeManagerImpl(): OpModeManagerImpl = getActiveOpModeManagerImpl
 private fun getActiveOpModeManagerImplFromActivity(activity: Activity): OpModeManagerImpl =
         OpModeManagerImpl.getOpModeManagerOfActivity(activity)
 
-fun getNameOfHardwareDevice(device: HardwareDevice) =
+fun getNameOfHardwareDevice(device: HardwareDevice): String =
         getActiveOpMode().hardwareMap.getNamesOf(device).iterator().next()
