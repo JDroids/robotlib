@@ -28,7 +28,7 @@ abstract class RobotTemplate {
      * This function is meant to initialize all of the subsystem's hardware. It is meant to be run
      * at the beginning of the OpMode.
      */
-    private fun initHardware() {
+    fun initHardware() {
         val subsystems = Scheduler.getSubsystems()
 
         for (subsystem in subsystems) {
