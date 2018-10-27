@@ -1,43 +1,31 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+buildscript {
+    ext.kotlin_version = '1.2.71'
 
-android {
-    compileSdkVersion 26
-    buildToolsVersion "27.0.3"
-
-
-    defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
     repositories {
-        flatDir {
-            dirs rootProject.file('libs')
-        }
+        mavenCentral()
     }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.2.71"
+    id "idea"
+}
+
+repositories {
+    jcenter()
 }
 
 dependencies {
-    compile project(':FtcRobotController')
-    compile(name: 'RobotCore-release', ext: 'aar')
-    compile(name: 'Hardware-release', ext: 'aar')
-    compile(name: 'FtcCommon-release', ext: 'aar')
-    compile(name: 'Analytics-release', ext: 'aar')
-    compile(name: 'WirelessP2p-release', ext: 'aar')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.0.3'
+    testImplementation 'io.mockk:mockk:1.8.9'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.0.3'
 }
-repositories {
-    mavenCentral()
+
+test {
+    useJUnitPlatform()
 }
