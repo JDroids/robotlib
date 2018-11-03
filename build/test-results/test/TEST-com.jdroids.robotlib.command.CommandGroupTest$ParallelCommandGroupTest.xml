@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-10-27T02:01:30" hostname="arch-desktop" time="1.636">
+<testsuite name="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-11-03T23:16:32" hostname="DANIEL-LAPTOP" time="1.263">
   <properties/>
-  <testcase name="isCompleted() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="1.553"/>
-  <testcase name="Calls end() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.042"/>
-  <testcase name="isInterruptable() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.01"/>
+  <testcase name="isCompleted() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="1.138"/>
+  <testcase name="Calls end() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.088"/>
+  <testcase name="isInterruptable() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.008"/>
   <testcase name="Calls periodic() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.014"/>
   <testcase name="Calls start() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.013"/>
   <system-out><![CDATA[]]></system-out>
