@@ -7,11 +7,13 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
     }
 }
 
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.2.71"
+    id "org.jetbrains.dokka" version "0.9.17"
     id "idea"
     id "jacoco"
 }
@@ -36,4 +38,9 @@ jacocoTestReport {
         xml.enabled true
         html.enabled false
     }
+}
+
+dokka {
+    outputFormat = "html" 
+    outputDirectory = "./docs"
 }
