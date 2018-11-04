@@ -1,4 +1,4 @@
-Robotlib
+RobotLib
 ==
 
 [![Build Status](https://travis-ci.org/JDroids/robotlib.svg?branch=master)](https://travis-ci.org/JDroids/robotlib)
