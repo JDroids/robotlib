@@ -47,7 +47,7 @@ allprojects {
 
 Documentation
 --
-The documentation for RobotLib is written in the [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html) format and is compiled into a series of webpages with [Dokka](https://github.com/Kotlin/dokka). The documentation can be found compiled [here](https://jdroids.github.io/robotlib/).
+The documentation for RobotLib is written in the [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html) format and is compiled into a series of webpages with [Dokka](https://github.com/Kotlin/dokka). The documentation can be found compiled [here](https://jdroids.github.io/robotlib/robotlib/index.html).
 
 Samples
 --
