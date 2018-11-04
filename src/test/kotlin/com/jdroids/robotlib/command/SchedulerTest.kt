@@ -4,47 +4,65 @@ import io.mockk.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
+import java.time.Period
 
 class SchedulerTest {
     private val subsystemMock = mockk<Subsystem>()
+    private val schedulerToTest = SchedulerImpl
 
     @Test
     fun `periodic() calls a subsystem's periodic function`() {
         every {subsystemMock.periodic()} just runs
-        SchedulerImpl.register(subsystemMock)
+        schedulerToTest.register(subsystemMock)
 
-        SchedulerImpl.periodic()
+        schedulerToTest.periodic()
 
         verify {subsystemMock.periodic()}
     }
 
     private val commandMock: Command = mockk()
 
+    var isCompleted = false
+
+    private inner class PeriodicCheckCommand : Command {
+        override fun isInterruptible() = false
+        override fun isCompleted() = isCompleted
+
+        var periodicCalls = 0
+
+        override fun start() {}
+        override fun periodic() {++periodicCalls}
+        override fun end() {}
+
+        var isInterruptCalled = false
+        override fun interrupt() {
+            isInterruptCalled = true
+        }
+    }
+
     @Test
     fun `run() causes periodic to call a command (and end it) properly`() {
-        every {commandMock.start()} just runs
-        every {commandMock.periodic()} just runs
-        every {commandMock.end()} just runs
+        val command = PeriodicCheckCommand()
 
-        every {commandMock.isCompleted()} returns false
+        schedulerToTest.run(command)
+        verify {command.start()}
 
-        SchedulerImpl.run(commandMock)
-        verify {commandMock.start()}
+        schedulerToTest.periodic()
+        schedulerToTest.periodic()
 
-        SchedulerImpl.periodic()
-        SchedulerImpl.periodic()
+        val periodicAtThisTime = command.periodicCalls
 
-        verify (exactly = 2) {commandMock.periodic()}
+        verify (exactly = periodicAtThisTime) {command.periodic()}
 
-        every {commandMock.isCompleted()} returns true
+        isCompleted = true
 
-        SchedulerImpl.periodic()
+        schedulerToTest.periodic()
 
-        verify {commandMock.end()}
+        verify {command.end()}
 
-        SchedulerImpl.periodic()
+        schedulerToTest.periodic()
 
-        verify (exactly = 2) {commandMock.periodic()}
+        verify (exactly = periodicAtThisTime) {command.periodic()}
     }
 
     @Test
@@ -55,9 +73,9 @@ class SchedulerTest {
         every {commandMock.interrupt()} just runs
         every {commandMock.isInterruptible()} returns true
 
-        SchedulerImpl.requires(commandMock, subsystemMock)
+        schedulerToTest.requires(commandMock, subsystemMock)
 
-        SchedulerImpl.run(commandMock)
+        schedulerToTest.run(commandMock)
 
         val commandMock2: Command = mockk()
 
@@ -66,14 +84,16 @@ class SchedulerTest {
         every {commandMock2.isCompleted()} returns false
         every {commandMock2.interrupt()} just runs
 
-        SchedulerImpl.requires(commandMock2, subsystemMock)
+        schedulerToTest.requires(commandMock2, subsystemMock)
 
-        SchedulerImpl.run(commandMock2)
+        schedulerToTest.run(commandMock2)
 
-        SchedulerImpl.periodic()
+        schedulerToTest.periodic()
+        schedulerToTest.periodic()
+        schedulerToTest.periodic()
 
         verify {commandMock.interrupt()}
-        verify (exactly = 0) {commandMock.periodic()}
+        verify (exactly = 2) {commandMock.periodic()}
         verify {commandMock2.periodic()}
     }
 
@@ -85,9 +105,9 @@ class SchedulerTest {
         every {commandMock.interrupt()} just runs
         every {commandMock.isInterruptible()} returns false
 
-        SchedulerImpl.requires(commandMock, subsystemMock)
+        schedulerToTest.requires(commandMock, subsystemMock)
 
-        SchedulerImpl.run(commandMock)
+        schedulerToTest.run(commandMock)
 
         val commandMock2: Command = mockk()
 
@@ -96,6 +116,6 @@ class SchedulerTest {
         every {commandMock2.isCompleted()} returns false
         every {commandMock2.interrupt()} just runs
 
-        assertThrows(IllegalStateException::class.java) {SchedulerImpl.requires(commandMock2, subsystemMock)}
+        assertThrows(IllegalStateException::class.java) {schedulerToTest.requires(commandMock2, subsystemMock)}
     }
 }

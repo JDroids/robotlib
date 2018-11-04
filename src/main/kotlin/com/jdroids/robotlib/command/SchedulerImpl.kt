@@ -3,7 +3,7 @@ package com.jdroids.robotlib.command
 import kotlin.collections.HashSet
 
 /**
- * An fairly simple implementation of [Scheduler].
+ * A fairly simple implementation of [Scheduler].
  */
 object SchedulerImpl : Scheduler {
     private val subsystems = HashSet<Subsystem>()
@@ -40,7 +40,9 @@ object SchedulerImpl : Scheduler {
         runningCommands.forEach { c ->
             if (c.isCompleted()) {
                 c.end()
-            } else {
+                clearSubsystemRequirements(c)
+            }
+            else {
                 c.periodic()
             }
         }
@@ -63,6 +65,7 @@ object SchedulerImpl : Scheduler {
             if (commandRequirements[it]?.contains(subsystem) == true) {
                 if (it.isInterruptible()) {
                     it.interrupt()
+                    clearSubsystemRequirements(it)
                     true
                 }
                 else {
@@ -82,4 +85,14 @@ object SchedulerImpl : Scheduler {
 
         commandRequirements[command]!!.add(subsystem)
     }
+
+    /**
+     * This function should clear the [Subsystem] requirements of a given [Command]. It should be
+     * called by [periodic] after it [ends][Command.end] a [Command]. If an opmode ends for an
+     * unknown reason, it should be called by the user.
+     */
+    fun clearSubsystemRequirements(command: Command) {
+        commandRequirements.remove(command)
+    }
+
 }

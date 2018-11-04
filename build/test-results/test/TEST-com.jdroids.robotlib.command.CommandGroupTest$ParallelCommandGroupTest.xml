@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-11-04T02:19:35" hostname="DANIEL-LAPTOP" time="2.635">
+<testsuite name="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-11-04T16:25:53" hostname="DANIEL-LAPTOP" time="0.103">
   <properties/>
-  <testcase name="isCompleted() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="2.517"/>
-  <testcase name="Calls end() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.063"/>
-  <testcase name="isInterruptable() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.011"/>
-  <testcase name="Calls periodic() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.021"/>
-  <testcase name="Calls start() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.016"/>
+  <testcase name="isCompleted() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.026"/>
+  <testcase name="Calls end() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.029"/>
+  <testcase name="isInterruptable() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.014"/>
+  <testcase name="Calls periodic() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.016"/>
+  <testcase name="Calls start() functions of all commands()" classname="com.jdroids.robotlib.command.CommandGroupTest$ParallelCommandGroupTest" time="0.015"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
