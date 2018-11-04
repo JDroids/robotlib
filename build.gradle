@@ -13,6 +13,7 @@ buildscript {
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.2.71"
     id "idea"
+    id "jacoco"
 }
 
 repositories {
@@ -28,4 +29,11 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }

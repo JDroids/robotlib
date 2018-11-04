@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PIDControllerImpl.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">robotlib</a> &gt; <a href="index.source.html" class="el_package">com.jdroids.robotlib.controller</a> &gt; <span class="el_source">PIDControllerImpl.kt</span></div><h1>PIDControllerImpl.kt</h1><pre class="source lang-java linenums">package com.jdroids.robotlib.controller
+
+<span class="nc" id="L3">class PIDControllerImpl(override var input: () -&gt; Double,</span>
+<span class="nc" id="L4">                        override var output: (Double) -&gt; Unit,</span>
+<span class="nc" id="L5">                        override var setpoint: Double,</span>
+<span class="nc" id="L6">                        override var p: Double,</span>
+<span class="nc" id="L7">                        override var i: Double,</span>
+<span class="nc" id="L8">                        override var d: Double) : PIDController {</span>
+
+<span class="nc" id="L10">    private var lastTime = System.nanoTime() * 1_000_000_000</span>
+
+    private var errorSum = 0.0
+    private var lastError = 0.0
+
+    override fun result(): Double {
+<span class="nc" id="L16">        val now = System.nanoTime() * 1_000_000_000</span>
+<span class="nc" id="L17">        val timeChange = lastTime - now</span>
+<span class="nc" id="L18">        lastTime = now</span>
+
+<span class="nc" id="L20">        val error = setpoint - input()</span>
+
+<span class="nc" id="L22">        errorSum += error</span>
+
+<span class="nc" id="L24">        val result = (p * error) +</span>
+<span class="nc" id="L25">                (i*timeChange * errorSum) +</span>
+<span class="nc" id="L26">                (d/timeChange * (error - lastError))</span>
+
+<span class="nc" id="L28">        lastError = error</span>
+
+<span class="nc" id="L30">        output(result)</span>
+<span class="nc" id="L31">        return result</span>
+    }
+
+    override fun reset() {
+<span class="nc" id="L35">        errorSum = 0.0</span>
+<span class="nc" id="L36">        lastError = 0.0</span>
+<span class="nc" id="L37">        lastTime = System.nanoTime() * 1_000_000_000</span>
+<span class="nc" id="L38">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
