@@ -1,8 +1,12 @@
+[![Build Status](https://travis-ci.org/JDroids/robotlib.svg?branch=master)](https://travis-ci.org/JDroids/robotlib)
+
 What is RobotLib?
-==
-RobotLib is a library for programming FTC robots. Unlike FRC, FTC only contains 
-a very minimal SDK. This library aims to address this issue. This library was
-inspired by the Java FRC SDK, which can be found [here](https://github.com/wpilibsuite/allwpilib/tree/master/wpilibj). 
+--
+RobotLib is a library for programming FTC robots. It's central feature is a 
+template for command-based design pattern. It seperates robot code into 2 parts.
+The main two parts are commands and subsystems. Subsystems are just parts 
+of the robot, like a claw, a drivetrain, etc. Commands make subsystems perform 
+specific actions.
 
 Installation
 --
