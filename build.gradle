@@ -12,7 +12,7 @@ buildscript {
 }
 
 plugins {
-    id "org.jetbrains.kotlin.jvm"
+    id "org.jetbrains.kotlin.jvm" version "1.2.71"
     id "org.jetbrains.dokka" version "0.9.17"
     id "idea"
     id "jacoco"
@@ -41,6 +41,6 @@ jacocoTestReport {
 }
 
 dokka {
-    outputFormat = "html" 
+    outputFormat = "gfm" 
     outputDirectory = "./docs"
 }

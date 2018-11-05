@@ -1,5 +1,5 @@
-$dokka.format:html
-$dokka.linkExtension:html
+$dokka.format:gfm
+$dokka.linkExtension:md
 
 com.jdroids.robotlib.command
 com.jdroids.robotlib.controller
