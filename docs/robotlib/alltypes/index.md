@@ -1,5 +1,7 @@
 
 
+RobotLib is a library for programming FTC robots.
+
 ### All Types
 
 | Name | Summary |

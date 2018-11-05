@@ -2,6 +2,8 @@
 
 ## Package com.jdroids.robotlib.controller
 
+The controller package contains the basics for beginning with control theory.
+
 ### Types
 
 | Name | Summary |

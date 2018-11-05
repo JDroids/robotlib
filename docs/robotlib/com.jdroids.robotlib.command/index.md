@@ -2,6 +2,8 @@
 
 ## Package com.jdroids.robotlib.command
 
+RobotLib's command system is really the heart of the entire library. It is an effective way of representing robot code in a readable fashion.
+
 ### Types
 
 | Name | Summary |

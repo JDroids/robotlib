@@ -13,7 +13,7 @@ specific actions.
 
 Installation
 --
-1. Clone this repository to some known location.
+1. Clone [this](https://github.com/JDroids/robotlib) repository to some known location.
 2. Open Android Studio to your ftc_app.
 3. Press File -> New -> Import Module.
 4. Select wherever you cloned this repository. (You may get an error; this is okay, ignore it.)
@@ -47,7 +47,7 @@ allprojects {
 
 Documentation
 --
-The documentation for RobotLib is written in the [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html) format and is compiled into github flavored markdown with [Dokka](https://github.com/Kotlin/dokka). The documentation can be found compiled in the docs folder.
+The documentation for RobotLib is written in the [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html) format and is compiled into github flavored markdown with [Dokka](https://github.com/Kotlin/dokka). The documentation can be found [here](jdroids.github.io/robotlib/docs/robotlib/index.md).
 
 Samples
 --

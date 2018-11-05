@@ -42,5 +42,6 @@ jacocoTestReport {
 
 dokka {
     outputFormat = "gfm" 
+    includes = ['packages.md']
     outputDirectory = "./docs"
 }
