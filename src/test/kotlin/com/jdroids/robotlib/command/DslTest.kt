@@ -1,6 +1,9 @@
 package com.jdroids.robotlib.command
 
+import io.mockk.every
+import io.mockk.just
 import io.mockk.mockk
+import io.mockk.runs
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 
@@ -17,6 +20,8 @@ internal class DslTest {
     @Test
     fun `subsystem requirement passes through`() {
         val subsystem0 = mockk<Subsystem>()
+
+        every {subsystem0.periodic()} just runs
 
         command {
             subsystem = subsystem0
