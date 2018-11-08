@@ -72,8 +72,6 @@ class CommandBuilder {
 
         override fun interrupt() {
             this@CommandBuilder.interrupt()
-
-            scheduler.clearSubsystemRequirements(this)
         }
     }
 

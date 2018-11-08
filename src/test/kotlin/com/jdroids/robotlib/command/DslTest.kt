@@ -21,6 +21,7 @@ internal class DslTest {
     fun `subsystem requirement passes through`() {
         val subsystem0 = mockk<Subsystem>()
 
+        every {subsystem0.initHardware()} just runs
         every {subsystem0.periodic()} just runs
 
         command {
