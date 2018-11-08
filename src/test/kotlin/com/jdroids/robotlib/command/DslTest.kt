@@ -18,12 +18,12 @@ internal class DslTest {
     fun `subsystem requirement passes through`() {
         val subsystem0 = mockk<Subsystem>()
 
-        val command0 = command {
+        command {
             subsystem = subsystem0
         }
 
         assertThrows(IllegalStateException::class.java) {
-            val command1 = command {
+            command {
                 subsystem = subsystem0
             }
         }

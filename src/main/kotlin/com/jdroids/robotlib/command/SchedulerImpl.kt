@@ -70,22 +70,18 @@ object SchedulerImpl : Scheduler {
      */
     @Synchronized
     override fun requires(command: Command, subsystem: Subsystem) {
-        commandRequirements.keys.forEach {
+        commandRequirements.keys.removeAll {
             if (commandRequirements[it]?.contains(subsystem) == true) {
                 if (it.isInterruptible()) {
                     it.interrupt()
-                    clearSubsystemRequirements(it)
+                    return@removeAll true
                 }
                 else {
                     throw IllegalStateException("Command started with same " +
                             "requirement as another, uninterruptible command")
                 }
             }
-        }
-
-        commandRequirements.keys.removeAll {
-            commandRequirements[it]?.contains(subsystem) == true &&
-                    it.isInterruptible()
+            return@removeAll false
         }
 
         runningCommands.removeAll {it.isInterruptible() &&
