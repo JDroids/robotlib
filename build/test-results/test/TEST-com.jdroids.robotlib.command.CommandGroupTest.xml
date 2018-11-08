@@ -2,15 +2,15 @@
 <testsuite name="com.jdroids.robotlib.command.CommandGroupTest" tests="0" skipped="0" failures="0" errors="0" timestamp="1970-01-01T00:00:00" hostname="arch-desktop" time="0.0">
   <properties/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Nov 08, 2018 12:50:19 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
+  <system-err><![CDATA[Nov 08, 2018 1:08:27 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
 INFO: Using default test instance lifecycle mode 'PER_CLASS' set via the 'junit.jupiter.testinstance.lifecycle.default' configuration parameter.
-Nov 08, 2018 12:50:19 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
+Nov 08, 2018 1:08:27 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
 INFO: Using default test instance lifecycle mode 'PER_CLASS' set via the 'junit.jupiter.testinstance.lifecycle.default' configuration parameter.
-Nov 08, 2018 12:50:19 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
+Nov 08, 2018 1:08:27 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
 INFO: Using default test instance lifecycle mode 'PER_CLASS' set via the 'junit.jupiter.testinstance.lifecycle.default' configuration parameter.
-Nov 08, 2018 12:50:23 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
+Nov 08, 2018 1:08:27 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
 INFO: Using default test instance lifecycle mode 'PER_CLASS' set via the 'junit.jupiter.testinstance.lifecycle.default' configuration parameter.
-Nov 08, 2018 12:50:23 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
+Nov 08, 2018 1:08:27 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
 INFO: Using default test instance lifecycle mode 'PER_CLASS' set via the 'junit.jupiter.testinstance.lifecycle.default' configuration parameter.
 ]]></system-err>
 </testsuite>
