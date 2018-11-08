@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.jdroids.robotlib.command.DslTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-11-08T05:41:06" hostname="arch-desktop" time="0.135">
+  <properties/>
+  <testcase name="default behavior is correct()" classname="com.jdroids.robotlib.command.DslTest" time="0.011"/>
+  <testcase name="interrupt passes through()" classname="com.jdroids.robotlib.command.DslTest" time="0.003"/>
+  <testcase name="end passes through()" classname="com.jdroids.robotlib.command.DslTest" time="0.003"/>
+  <testcase name="periodic passes through()" classname="com.jdroids.robotlib.command.DslTest" time="0.002"/>
+  <testcase name="subsystem requirement passes through()" classname="com.jdroids.robotlib.command.DslTest" time="0.102"/>
+  <testcase name="start passes through()" classname="com.jdroids.robotlib.command.DslTest" time="0.003"/>
+  <testcase name="isCompleted passes through()" classname="com.jdroids.robotlib.command.DslTest" time="0.002"/>
+  <testcase name="interruptible gets passes through()" classname="com.jdroids.robotlib.command.DslTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Nov 08, 2018 12:41:06 AM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
+INFO: Using default test instance lifecycle mode 'PER_CLASS' set via the 'junit.jupiter.testinstance.lifecycle.default' configuration parameter.
+]]></system-err>
+</testsuite>

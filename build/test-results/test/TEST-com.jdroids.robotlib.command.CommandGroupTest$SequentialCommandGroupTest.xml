@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-11-04T16:25:53" hostname="DANIEL-LAPTOP" time="0.08">
+<testsuite name="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-11-08T05:41:06" hostname="arch-desktop" time="0.079">
   <properties/>
-  <testcase name="isCompleted() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.016"/>
-  <testcase name="start() starts the first command and only the first command()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.007"/>
-  <testcase name="periodic() runs the correct command()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.04"/>
-  <testcase name="isInterruptable() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.015"/>
+  <testcase name="isCompleted() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.015"/>
+  <testcase name="start() starts the first command and only the first command()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.009"/>
+  <testcase name="periodic() runs the correct command()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.043"/>
+  <testcase name="isInterruptable() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.009"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

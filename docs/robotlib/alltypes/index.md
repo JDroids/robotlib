@@ -7,6 +7,8 @@ RobotLib is a library for programming FTC robots.
 | Name | Summary |
 |---|---|
 | [com.jdroids.robotlib.command.Command](../com.jdroids.robotlib.command/-command/index.md) | The [Command](../com.jdroids.robotlib.command/-command/index.md) interface is the center of the command-based design pattern. Each command represents a certain action. |
+| [com.jdroids.robotlib.command.CommandBuilder](../com.jdroids.robotlib.command/-command-builder/index.md) | [CommandBuilder](../com.jdroids.robotlib.command/-command-builder/index.md) is a basic factory for commands from given lambdas and variables. It is not intended for actual use, but instead as a backend for [command](../com.jdroids.robotlib.command/command.md). This enables a very clean syntax for commands. |
+| [com.jdroids.robotlib.command.CommandDsl](../com.jdroids.robotlib.command/-command-dsl/index.md) |  |
 | [com.jdroids.robotlib.controller.Controller](../com.jdroids.robotlib.controller/-controller/index.md) | The [Controller](../com.jdroids.robotlib.controller/-controller/index.md) interface represents a basic control loop. |
 | [com.jdroids.robotlib.controller.PIDController](../com.jdroids.robotlib.controller/-p-i-d-controller/index.md) | The [PIDController](../com.jdroids.robotlib.controller/-p-i-d-controller/index.md) represents a simple [pid controller](https://en.wikipedia.org/wiki/PID_controller). |
 | [com.jdroids.robotlib.controller.PIDControllerImpl](../com.jdroids.robotlib.controller/-p-i-d-controller-impl/index.md) | This is a simple implementation of [PIDController](../com.jdroids.robotlib.controller/-p-i-d-controller/index.md). |

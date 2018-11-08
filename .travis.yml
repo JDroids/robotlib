@@ -6,8 +6,6 @@ jdk:
 
 script:
   - ./gradlew build
-  - ./gradlew jacocoTestReport
-  - bash <(curl -s https://codecov.io/bash)
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock

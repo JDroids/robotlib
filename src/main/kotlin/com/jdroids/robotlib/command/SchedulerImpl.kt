@@ -1,12 +1,21 @@
 package com.jdroids.robotlib.command
 
-import kotlin.collections.HashSet
-
 /**
  * A fairly simple implementation of [Scheduler].
  */
 object SchedulerImpl : Scheduler {
+    init {
+        object : Thread() {
+            override fun run() {
+                while (!this.isInterrupted) {
+                    subsystems.forEach {it.periodic()}
+                }
+            }
+        }.start()
+    }
+
     private val subsystems = HashSet<Subsystem>()
+
 
     /**
      * Registers a [Subsystem] so that it's [periodic][Subsystem.periodic]
@@ -61,19 +70,22 @@ object SchedulerImpl : Scheduler {
      */
     @Synchronized
     override fun requires(command: Command, subsystem: Subsystem) {
-        commandRequirements.keys.removeAll {
+        commandRequirements.keys.forEach {
             if (commandRequirements[it]?.contains(subsystem) == true) {
                 if (it.isInterruptible()) {
                     it.interrupt()
                     clearSubsystemRequirements(it)
-                    true
                 }
                 else {
                     throw IllegalStateException("Command started with same " +
                             "requirement as another, uninterruptible command")
                 }
             }
-            false
+        }
+
+        commandRequirements.keys.removeAll {
+            commandRequirements[it]?.contains(subsystem) == true &&
+                    it.isInterruptible()
         }
 
         runningCommands.removeAll {it.isInterruptible() &&
@@ -87,12 +99,12 @@ object SchedulerImpl : Scheduler {
     }
 
     /**
-     * This function should clear the [Subsystem] requirements of a given [Command]. It should be
-     * called by [periodic] after it [ends][Command.end] a [Command]. If an opmode ends for an
-     * unknown reason, it should be called by the user.
+     * This function should clear the [Subsystem] requirements of a given
+     * [Command]. It should be called by [periodic] after it [ends][Command.end]
+     * a [Command]. If an opmode ends for an unknown reason, it should be called
+     * by the user.
      */
-    fun clearSubsystemRequirements(command: Command) {
+    override fun clearSubsystemRequirements(command: Command) {
         commandRequirements.remove(command)
     }
-
 }

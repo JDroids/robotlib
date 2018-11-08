@@ -28,29 +28,37 @@ internal class CommandGroupTest {
         }
 
         @Test
-        fun `Calls periodic() functions of all commands`() {
+        fun `periodic() calls functions properly`() {
             every {commandMock0.periodic()} just runs
             every {commandMock1.periodic()} just runs
             every {commandMock2.periodic()} just runs
+
+            every {commandMock1.end()} just runs
+
+            every {commandMock0.isCompleted()} returns false
+            every {commandMock1.isCompleted()} returns false
+            every {commandMock2.isCompleted()} returns false
 
             commandGroup.periodic()
 
             verify {commandMock0.periodic()}
             verify {commandMock1.periodic()}
             verify {commandMock2.periodic()}
-        }
 
-        @Test
-        fun `Calls end() functions of all commands`() {
-            every {commandMock0.end()} just runs
-            every {commandMock1.end()} just runs
-            every {commandMock2.end()} just runs
+            every {commandMock1.isCompleted()} returns true
 
-            commandGroup.end()
+            commandGroup.periodic()
 
-            verify {commandMock0.end()}
+            verify(exactly = 2) {commandMock0.periodic()}
+            verify(exactly = 1) {commandMock1.periodic()}
+            verify(exactly = 2) {commandMock2.periodic()}
+
             verify {commandMock1.end()}
-            verify {commandMock2.end()}
+
+            commandGroup.periodic()
+
+            verify(exactly = 1) {commandMock1.end()}
+            verify(exactly = 1) {commandMock1.periodic()}
         }
 
         @Test

@@ -10,6 +10,7 @@ The [Scheduler](./index.md) interface represents what a scheduler should do/
 
 | Name | Summary |
 |---|---|
+| [clearSubsystemRequirements](clear-subsystem-requirements.md) | `abstract fun clearSubsystemRequirements(command: `[`Command`](../-command/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>This clears the subsystem requirements for a given command. |
 | [periodic](periodic.md) | `abstract fun periodic(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>This function updates the state of everything the [Scheduler](./index.md) is keeping track of. It should be called as often as possible. |
 | [register](register.md) | `abstract fun register(subsystem: `[`Subsystem`](../-subsystem/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Should make it so that the given [subsystem's](../-subsystem/index.md) [periodic](../-subsystem/periodic.md) function is called when [periodic](periodic.md) is called. |
 | [requires](requires.md) | `abstract fun requires(command: `[`Command`](../-command/index.md)`, subsystem: `[`Subsystem`](../-subsystem/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>This should ensure that a given [Command](../-command/index.md) can take control of a given [Subsystem](../-subsystem/index.md). |

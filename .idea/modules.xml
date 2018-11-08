@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RobotlibVersion2.iml" filepath="$PROJECT_DIR$/RobotlibVersion2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/robotlib.iml" filepath="$PROJECT_DIR$/.idea/modules/robotlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/robotlib_main.iml" filepath="$PROJECT_DIR$/.idea/modules/robotlib_main.iml" group="robotlib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/robotlib_test.iml" filepath="$PROJECT_DIR$/.idea/modules/robotlib_test.iml" group="robotlib" />
     </modules>
   </component>
 </project>
