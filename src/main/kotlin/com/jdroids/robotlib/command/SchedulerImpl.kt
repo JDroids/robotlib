@@ -16,7 +16,6 @@ object SchedulerImpl : Scheduler {
 
     private val subsystems = HashSet<Subsystem>()
 
-
     /**
      * Registers a [Subsystem] so that it's [periodic][Subsystem.periodic]
      * method is called when [Scheduler.periodic] is called.
@@ -53,7 +52,6 @@ object SchedulerImpl : Scheduler {
         runningCommands.forEach { c ->
             if (c.isCompleted()) {
                 c.end()
-                clearSubsystemRequirements(c)
             }
             else {
                 c.periodic()
@@ -63,48 +61,5 @@ object SchedulerImpl : Scheduler {
         runningCommands.removeAll {it.isCompleted()}
 
         subsystems.forEach {s: Subsystem -> s.periodic()}
-    }
-    private val commandRequirements = HashMap<Command, HashSet<Subsystem>>()
-
-    /**
-     * Checks if a given [Command] can use a given [Subsystem].
-     *
-     * @param command the command to check
-     * @param subsystem the subsystem to check
-     */
-    @Synchronized
-    override fun requires(command: Command, subsystem: Subsystem) {
-        commandRequirements.keys.removeAll {
-            if (commandRequirements[it]?.contains(subsystem) == true) {
-                if (it.isInterruptible()) {
-                    it.interrupt()
-                    return@removeAll true
-                }
-                else {
-                    throw IllegalStateException("Command started with same " +
-                            "requirement as another, uninterruptible command")
-                }
-            }
-            return@removeAll false
-        }
-
-        runningCommands.removeAll {it.isInterruptible() &&
-                commandRequirements[it]?.contains(subsystem) == true}
-
-        if (commandRequirements[command] == null) {
-            commandRequirements[command] = HashSet()
-        }
-
-        commandRequirements[command]!!.add(subsystem)
-    }
-
-    /**
-     * This function should clear the [Subsystem] requirements of a given
-     * [Command]. It should be called by [periodic] after it [ends][Command.end]
-     * a [Command]. If an opmode ends for an unknown reason, it should be called
-     * by the user.
-     */
-    override fun clearSubsystemRequirements(command: Command) {
-        commandRequirements.remove(command)
     }
 }

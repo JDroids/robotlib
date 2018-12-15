@@ -1,4 +1,4 @@
-package com.jdroids.robotlib.command
+    package com.jdroids.robotlib.command
 
 @DslMarker
 annotation class CommandDsl
@@ -11,8 +11,6 @@ annotation class CommandDsl
 @CommandDsl
 class CommandBuilder {
     var scheduler = SchedulerImpl
-
-    var interruptible = false
 
     fun isCompleted(statement: () -> Boolean) {
         isCompleted = statement
@@ -38,29 +36,12 @@ class CommandBuilder {
 
     private var end: () -> Unit = {}
 
-    fun interrupt(statement: () -> Unit) {
-        interrupt = statement
-    }
-
-    private var interrupt: () -> Unit = {
-        SchedulerImpl.clearSubsystemRequirements(builtCommand)
-        end()
-    }
-
     private lateinit var builtCommand: Command
-
-    lateinit var subsystem: Subsystem
 
     private inner class BuiltCommand : Command {
         init {
             this@CommandBuilder.builtCommand = this
-
-            if (::subsystem.isInitialized) {
-                SchedulerImpl.requires(this, subsystem)
-            }
         }
-
-        override fun isInterruptible() = interruptible
 
         override fun isCompleted() = this@CommandBuilder.isCompleted()
 
@@ -69,10 +50,6 @@ class CommandBuilder {
         override fun periodic() = this@CommandBuilder.periodic()
 
         override fun end() = this@CommandBuilder.end()
-
-        override fun interrupt() {
-            this@CommandBuilder.interrupt()
-        }
     }
 
     fun build(): Command = BuiltCommand()

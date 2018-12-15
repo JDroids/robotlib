@@ -26,20 +26,4 @@ interface Scheduler {
      * track of. It should be called as often as possible.
      */
     fun periodic()
-
-    /**
-     * This should ensure that a given [Command] can take control of a given
-     * [Subsystem].
-     *
-     * @param command the [Command] to check
-     * @param subsystem the [Subsystem] to check
-     */
-    fun requires(command: Command, subsystem: Subsystem)
-
-    /**
-     * This clears the subsystem requirements for a given command.
-     *
-     * @param command the command who's requirement you want to clear
-     */
-    fun clearSubsystemRequirements(command: Command)
 }

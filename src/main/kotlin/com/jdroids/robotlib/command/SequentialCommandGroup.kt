@@ -10,15 +10,6 @@ class SequentialCommandGroup(private vararg val commands: Command) : Command {
     private var currentIndex = 0
 
     /**
-     * This method returns whether or not the command group should be
-     * interruptible.
-     *
-     * @return if the command group should be interruptible
-     */
-    override fun isInterruptible() =
-            commands.all {c: Command -> c.isInterruptible()}
-
-    /**
      * This method returns if the command group has finished running.
      *
      * @return if the command group finished running
@@ -52,9 +43,4 @@ class SequentialCommandGroup(private vararg val commands: Command) : Command {
      * Calls the [end] function of the currently running [Command].
      */
     override fun end() = commands[currentIndex].end()
-
-    /**
-     * Calls the [interrupt] function of the currently running [Command].
-     */
-    override fun interrupt() = commands[currentIndex].interrupt()
 }

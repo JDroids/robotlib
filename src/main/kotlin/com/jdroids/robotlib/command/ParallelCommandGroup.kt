@@ -10,15 +10,6 @@ class ParallelCommandGroup(private vararg val commands: Command) : Command {
     private val completedCommands = HashSet<Command>()
 
     /**
-     * This method returns whether or not the command group should be
-     * interruptible.
-     *
-     * @return if the command group should be interruptible
-     */
-    override fun isInterruptible() =
-            commands.all {it.isInterruptible()}
-
-    /**
      * This method returns if the command group has finished running.
      *
      * @return if the command group finished running
@@ -55,11 +46,4 @@ class ParallelCommandGroup(private vararg val commands: Command) : Command {
      */
     override fun end() = commands.forEach {
         if (!completedCommands.contains(it)) it.end()}
-
-    /**
-     * Calls the [Command.interrupt] method of each command within the command
-     * group.
-     */
-    override fun interrupt() = commands.forEach {
-        if (!completedCommands.contains(it)) it.interrupt()}
 }

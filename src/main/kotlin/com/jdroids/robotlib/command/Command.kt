@@ -6,15 +6,6 @@ package com.jdroids.robotlib.command
  */
 interface Command {
     /**
-     * This function tells the [Scheduler] if it should interrupt the command or
-     * throw an error if a second command with overlapping requirements is run.
-     *
-     * @return if the command should be interrupted when a command with
-     * overlapping requirements is run
-     */
-    fun isInterruptible(): Boolean
-
-    /**
      * This function tells the [Scheduler] if the command is completed.
      *
      * @return if the command is completed
@@ -39,11 +30,4 @@ interface Command {
      * true. This typically stops motors moving, resets servos, etc.
      */
     fun end()
-
-    /**
-     * This is called if another command with overlapping requirements is called
-     * and if [isInterruptible] returns true. It should stop everything, but a
-     * lot of the time it just has to call [end].
-     */
-    fun interrupt()
 }

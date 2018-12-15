@@ -62,19 +62,6 @@ internal class CommandGroupTest {
         }
 
         @Test
-        fun `isInterruptable() gets value properly`() {
-            every {commandMock0.isInterruptible()} returns true
-            every {commandMock1.isInterruptible()} returns true
-            every {commandMock2.isInterruptible()} returns true
-
-            assert(commandGroup.isInterruptible())
-
-            every {commandMock2.isInterruptible()} returns false
-
-            assert(!commandGroup.isInterruptible())
-        }
-
-        @Test
         fun `isCompleted() gets value properly`() {
             every {commandMock0.isCompleted()} returns true
             every {commandMock1.isCompleted()} returns true
@@ -142,19 +129,6 @@ internal class CommandGroupTest {
             commandGroup.periodic()
 
             verify(exactly = 1) {commandMock1.periodic()}
-        }
-
-        @Test
-        fun `isInterruptable() gets value properly`() {
-            every {commandMock0.isInterruptible()} returns true
-            every {commandMock1.isInterruptible()} returns true
-            every {commandMock2.isInterruptible()} returns true
-
-            assert(commandGroup.isInterruptible())
-
-            every {commandMock2.isInterruptible()} returns false
-
-            assert(!commandGroup.isInterruptible())
         }
 
         @Test
