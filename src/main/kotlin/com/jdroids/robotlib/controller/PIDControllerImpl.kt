@@ -20,7 +20,10 @@ class PIDControllerImpl(override var input: () -> Double,
     private var lastTime = System.nanoTime() * 1_000_000_000
 
     private var errorSum = 0.0
-    private var lastError = 0.0
+    var lastError = 0.0
+
+    private var minInput: Double? = null
+    private var maxInput: Double? = null
 
     /**
      * Calculates the result of the controller, calls [output] with it, and then
@@ -33,7 +36,7 @@ class PIDControllerImpl(override var input: () -> Double,
         val timeChange = lastTime - now
         lastTime = now
 
-        val error = setpoint - input()
+        val error = getContinuousError(setpoint - input())
 
         errorSum += error
 
@@ -48,11 +51,57 @@ class PIDControllerImpl(override var input: () -> Double,
     }
 
     /**
+     * Returns the error either unaltered or finds the error continuously if [setContinuous]
+     * has been called.
+     *
+     * @param error the discontinuous error
+     */
+    private fun getContinuousError(error: Double): Double {
+        var mutableError = error
+
+        if (minInput != null && maxInput != null) {
+            val inputRange = maxInput!! - minInput!!
+
+            mutableError %= inputRange
+
+            if (Math.abs(mutableError) > inputRange/2) {
+                if (mutableError > 0) {
+                    return error - inputRange
+                }
+                else {
+                    return error + inputRange
+                }
+            }
+        }
+
+        return mutableError
+    }
+
+    /**
      * Resets the error sum and previous error values.
      */
     override fun reset() {
         errorSum = 0.0
         lastError = 0.0
         lastTime = System.nanoTime() * 1_000_000_000
+    }
+
+    /**
+     * Sets the controller to be continuous.
+     *
+     * @param minInput the new minimum input
+     * @param maxInput the new maximum input
+     */
+    fun setContinuous(minInput: Double, maxInput: Double) {
+        this.minInput = minInput
+        this.maxInput = maxInput
+    }
+
+    /**
+     * Makes the controller discontinuous.
+     */
+    fun disableContinuous() {
+        minInput = null
+        maxInput = null
     }
 }
