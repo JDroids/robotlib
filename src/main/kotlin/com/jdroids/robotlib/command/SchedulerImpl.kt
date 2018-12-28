@@ -4,7 +4,7 @@ package com.jdroids.robotlib.command
  * A fairly simple implementation of [Scheduler].
  */
 object SchedulerImpl : Scheduler {
-    var isThreadActive = false
+    private var isThreadActive = false
 
     private class HardwareUpdateThread : Thread() {
         override fun run() {
