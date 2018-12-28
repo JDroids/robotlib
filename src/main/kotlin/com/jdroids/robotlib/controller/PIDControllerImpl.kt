@@ -1,5 +1,7 @@
 package com.jdroids.robotlib.controller
 
+import kotlin.math.max
+
 /**
  * This is a simple implementation of [PIDController].
  *
@@ -57,24 +59,20 @@ class PIDControllerImpl(override var input: () -> Double,
      * @param error the discontinuous error
      */
     private fun getContinuousError(error: Double): Double {
-        var mutableError = error
-
         if (minInput != null && maxInput != null) {
-            val inputRange = maxInput!! - minInput!!
+            val minError = minInput!! - error
+            val maxError = maxInput!! - error
 
-            mutableError %= inputRange
-
-            if (Math.abs(mutableError) > inputRange/2) {
-                if (mutableError > 0) {
-                    return error - inputRange
-                }
-                else {
-                    return error + inputRange
-                }
+            if (Math.abs(minError) < Math.abs(maxError) && Math.abs(minError) < Math.abs(error)) {
+                return minError
+            }
+            else if (Math.abs(maxError) < Math.abs(minError)
+                     && Math.abs(maxError) < Math.abs(error)) {
+                return maxError
             }
         }
 
-        return mutableError
+        return error
     }
 
     /**

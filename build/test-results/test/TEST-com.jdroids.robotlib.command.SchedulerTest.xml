@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.jdroids.robotlib.command.SchedulerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-12-15T01:49:23" hostname="DANIEL-LAPTOP" time="0.001">
+<testsuite name="com.jdroids.robotlib.command.SchedulerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-12-20T21:02:01" hostname="DANIEL-LAPTOP" time="0.001">
   <properties/>
   <testcase name="run() causes periodic to call a command (and end it) properly()" classname="com.jdroids.robotlib.command.SchedulerTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Dec 14, 2018 8:49:23 PM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
+  <system-err><![CDATA[Dec 20, 2018 4:02:01 PM org.junit.jupiter.engine.descriptor.TestInstanceLifecycleUtils getDefaultTestInstanceLifecycle
 INFO: Using default test instance lifecycle mode 'PER_CLASS' set via the 'junit.jupiter.testinstance.lifecycle.default' configuration parameter.
 ]]></system-err>
 </testsuite>

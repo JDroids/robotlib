@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-12-15T01:49:23" hostname="DANIEL-LAPTOP" time="0.093">
+<testsuite name="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-12-20T21:02:01" hostname="DANIEL-LAPTOP" time="0.11">
   <properties/>
-  <testcase name="isCompleted() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.023"/>
-  <testcase name="start() starts the first command and only the first command()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.01"/>
-  <testcase name="periodic() runs the correct command()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.054"/>
+  <testcase name="isCompleted() gets value properly()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.029"/>
+  <testcase name="start() starts the first command and only the first command()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.013"/>
+  <testcase name="periodic() runs the correct command()" classname="com.jdroids.robotlib.command.CommandGroupTest$SequentialCommandGroupTest" time="0.067"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
