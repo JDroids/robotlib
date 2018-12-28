@@ -26,4 +26,11 @@ interface Scheduler {
      * track of. It should be called as often as possible.
      */
     fun periodic()
+
+    
+    /**
+     * Should kill anything from the background. Should be called at the end of
+     * an OpMode.
+     */
+     fun kill()
 }

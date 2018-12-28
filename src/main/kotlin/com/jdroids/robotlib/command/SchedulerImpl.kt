@@ -4,9 +4,11 @@ package com.jdroids.robotlib.command
  * A fairly simple implementation of [Scheduler].
  */
 object SchedulerImpl : Scheduler {
+    var isThreadActive = false
+
     private class HardwareUpdateThread : Thread() {
         override fun run() {
-            while (!this.isInterrupted) {
+            while (!this.isInterrupted && isThreadActive) {
                 subsystems.forEach {it.periodic()}
             }
         }
@@ -23,6 +25,8 @@ object SchedulerImpl : Scheduler {
      * @param subsystem the subsystem to register
      */
     override fun register(subsystem: Subsystem) {
+        isThreadActive = true
+
         if (!updateThread.isAlive) {
             updateThread.start()
         }
@@ -59,7 +63,12 @@ object SchedulerImpl : Scheduler {
         }
 
         runningCommands.removeAll {it.isCompleted()}
-
-        subsystems.forEach {s: Subsystem -> s.periodic()}
     }
+
+    /**
+     * Kills the hardware update thread.
+     */
+     override fun kill() {
+        isThreadActive = false
+     }
 }
