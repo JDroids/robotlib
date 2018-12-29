@@ -3,159 +3,168 @@ package com.jdroids.robotlib.command
 import io.mockk.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.*
 
 internal class CommandGroupTest {
+    class MockCommand() : Command {
+        data class CommandState(
+            val startCount: Int,
+            val periodicCount: Int,
+            val endCount: Int
+        )
+
+        var state: CommandState = CommandState(0,0,0)
+            private set
+        
+        override fun start() {
+            state = state.copy(
+                startCount = state.startCount + 1
+            )    
+        }
+
+        override fun periodic() {
+            state = state.copy(
+                periodicCount = state.periodicCount + 1
+            )    
+        }
+        
+        override fun end() {
+            state = state.copy(
+                endCount = state.endCount + 1
+            )    
+        }
+
+        var hasCompleted = false
+
+        override fun isCompleted() : Boolean {
+            return hasCompleted
+        }
+    }
+
+
+
     @Nested
     inner class ParallelCommandGroupTest {
-        val commandMock0: Command = mockk()
-        val commandMock1: Command = mockk()
-        val commandMock2: Command = mockk()
+        val command1 = MockCommand()
+        val command2 = MockCommand()
 
         val commandGroup =
-                ParallelCommandGroup(commandMock0, commandMock1, commandMock2)
+                ParallelCommandGroup(command1, command2)
 
         @Test
-        fun `Calls start() functions of all commands`() {
-            every {commandMock0.start()} just runs
-            every {commandMock1.start()} just runs
-            every {commandMock2.start()} just runs
+        fun `2 commands loaded, one terminates first`() {
+            assertEquals(MockCommand.CommandState(0,0,0), command1.state)   
+            assertEquals(MockCommand.CommandState(0,0,0), command2.state)
 
-            commandGroup.start()
+            SchedulerImpl.run(commandGroup)
 
-            verify {commandMock0.start()}
-            verify {commandMock1.start()}
-            verify {commandMock2.start()}
-        }
+            assertEquals(MockCommand.CommandState(1,0,0), command1.state)   
+            assertEquals(MockCommand.CommandState(1,0,0), command2.state)
 
-        @Test
-        fun `periodic() calls functions properly`() {
-            every {commandMock0.periodic()} just runs
-            every {commandMock1.periodic()} just runs
-            every {commandMock2.periodic()} just runs
+            SchedulerImpl.periodic()
+            
+            assertEquals(MockCommand.CommandState(1,1,0), command1.state)   
+            assertEquals(MockCommand.CommandState(1,1,0), command2.state)
 
-            every {commandMock1.end()} just runs
+            SchedulerImpl.periodic()
+            
+            assertEquals(MockCommand.CommandState(1,2,0), command1.state)   
+            assertEquals(MockCommand.CommandState(1,2,0), command2.state)
 
-            every {commandMock0.isCompleted()} returns false
-            every {commandMock1.isCompleted()} returns false
-            every {commandMock2.isCompleted()} returns false
+            command2.hasCompleted = true
+            
+            SchedulerImpl.periodic()
+            
+            assertEquals(MockCommand.CommandState(1,3,0), command1.state)   
+            assertEquals(MockCommand.CommandState(1,2,1), command2.state)
+        
+            SchedulerImpl.periodic()
 
-            commandGroup.periodic()
-
-            verify {commandMock0.periodic()}
-            verify {commandMock1.periodic()}
-            verify {commandMock2.periodic()}
-
-            every {commandMock1.isCompleted()} returns true
-
-            commandGroup.periodic()
-
-            verify(exactly = 2) {commandMock0.periodic()}
-            verify(exactly = 1) {commandMock1.periodic()}
-            verify(exactly = 2) {commandMock2.periodic()}
-
-            verify {commandMock1.end()}
-
-            commandGroup.periodic()
-
-            verify(exactly = 1) {commandMock1.end()}
-            verify(exactly = 1) {commandMock1.periodic()}
-        }
-
-        @Test
-        fun `isCompleted() gets value properly`() {
-            every {commandMock0.isCompleted()} returns true
-            every {commandMock1.isCompleted()} returns true
-            every {commandMock2.isCompleted()} returns true
-
-            assert(commandGroup.isCompleted())
-
-            every {commandMock2.isCompleted()} returns false
-
-            assert(!commandGroup.isCompleted())
+            assertEquals(MockCommand.CommandState(1,4,0), command1.state)   
+            assertEquals(MockCommand.CommandState(1,2,1), command2.state)
+            
         }
     }
 
     @Nested
     inner class SequentialCommandGroupTest {
-        val commandMock0: Command = mockk()
-        val commandMock1: Command = mockk()
-        val commandMock2: Command = mockk()
+        val command1 = MockCommand()
+        val command2 = MockCommand()
+        val command3 = MockCommand()
 
-        val commandGroup = SequentialCommandGroup(commandMock0, commandMock1,
-                commandMock2)
-
-        @Test
-        fun `start() starts the first command and only the first command`() {
-            every {commandMock0.start()} just runs
-            every {commandMock1.start()} just runs
-
-            commandGroup.start()
-
-            verify {commandMock0.start()}
-            verify(exactly = 0) {commandMock1.start()}
-        }
+        val commandGroup = SequentialCommandGroup(command1, command2, command3)
 
         @Test
-        fun `periodic() runs the correct command`() {
-            every {commandMock0.start()} just runs
-            every {commandMock1.start()} just runs
-            every {commandMock2.start()} just runs
+        fun `Test SequentialCommandGroup with 3 commands`() {
+            assertEquals(MockCommand.CommandState(0,0,0), command1.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command2.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command3.state)
 
-            every {commandMock0.periodic()} just runs
-            every {commandMock1.periodic()} just runs
-            every {commandMock2.periodic()} just runs
+            SchedulerImpl.run(commandGroup)
 
-            every {commandMock0.end()} just runs
-            every {commandMock1.end()} just runs
-            every {commandMock2.end()} just runs
-
-            every {commandMock0.isCompleted()} returns false
-            every {commandMock1.isCompleted()} returns false
-            every {commandMock2.isCompleted()} returns false
-
-
-            commandGroup.periodic()
-
-            verify(exactly = 1) {commandMock0.periodic()}
-            verify(exactly = 0) {commandMock1.periodic()}
-            verify(exactly = 0) {commandMock2.periodic()}
-
-            every {commandMock0.isCompleted()} returns true
-
-            commandGroup.periodic()
-
-            verify(exactly = 1) {commandMock0.end()}
-
-            commandGroup.periodic()
-
-            verify(exactly = 1) {commandMock1.periodic()}
-        }
-
-        @Test
-        fun `isCompleted() gets value properly`() {
-            every {commandMock0.isCompleted()} returns false
-            every {commandMock1.isCompleted()} returns false
-            every {commandMock2.isCompleted()} returns false
+            assertEquals(MockCommand.CommandState(1,0,0), command1.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command2.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command3.state)
 
             SchedulerImpl.periodic()
 
-            assert(!commandGroup.isCompleted())
+            assertEquals(MockCommand.CommandState(1,1,0), command1.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command2.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command3.state)
+        
+            SchedulerImpl.periodic()
+            
+            assertEquals(MockCommand.CommandState(1,2,0), command1.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command2.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command3.state)
 
-            every {commandMock0.isCompleted()} returns true
+            command1.hasCompleted = true
+                    
+            SchedulerImpl.periodic()
+            
+            assertEquals(MockCommand.CommandState(1,2,1), command1.state)
+            assertEquals(MockCommand.CommandState(1,0,0), command2.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command3.state)
             
             SchedulerImpl.periodic()
-
-            assert(!commandGroup.isCompleted())
-
-            every {commandMock1.isCompleted()} returns true
-
-            SchedulerImpl.periodic()
-
-            assert(!commandGroup.isCompleted())
             
-            every {commandMock2.isCompleted()} returns true
+            assertEquals(MockCommand.CommandState(1,2,1), command1.state)
+            assertEquals(MockCommand.CommandState(1,1,0), command2.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command3.state)
 
             SchedulerImpl.periodic()
+            
+            assertEquals(MockCommand.CommandState(1,2,1), command1.state)
+            assertEquals(MockCommand.CommandState(1,2,0), command2.state)
+            assertEquals(MockCommand.CommandState(0,0,0), command3.state)
+
+            command2.hasCompleted = true
+
+            SchedulerImpl.periodic()
+
+            assertEquals(MockCommand.CommandState(1,2,1), command1.state)
+            assertEquals(MockCommand.CommandState(1,2,1), command2.state)
+            assertEquals(MockCommand.CommandState(1,0,0), command3.state)
+
+            SchedulerImpl.periodic()
+            
+            assertEquals(MockCommand.CommandState(1,2,1), command1.state)
+            assertEquals(MockCommand.CommandState(1,2,1), command2.state)
+            assertEquals(MockCommand.CommandState(1,1,0), command3.state)
+            
+            SchedulerImpl.periodic()
+            
+            assertEquals(MockCommand.CommandState(1,2,1), command1.state)
+            assertEquals(MockCommand.CommandState(1,2,1), command2.state)
+            assertEquals(MockCommand.CommandState(1,2,0), command3.state)
+
+            command3.hasCompleted = true
+                    
+            SchedulerImpl.periodic()
+            
+            assertEquals(MockCommand.CommandState(1,2,1), command1.state)
+            assertEquals(MockCommand.CommandState(1,2,1), command2.state)
+            assertEquals(MockCommand.CommandState(1,2,1), command3.state)
 
             assert(commandGroup.isCompleted())
         }

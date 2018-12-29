@@ -14,7 +14,7 @@ class SequentialCommandGroup(private vararg val commands: Command) : Command {
      *
      * @return if the command group finished running
      */
-    override fun isCompleted() = commands[commands.size-1].isCompleted()
+    override fun isCompleted() = currentIndex >= commands.size
 
     /**
      * Starts the first command.
@@ -31,7 +31,10 @@ class SequentialCommandGroup(private vararg val commands: Command) : Command {
             if (currentCommand.isCompleted()) {
                 currentCommand.end()
                 ++currentIndex
-                commands[currentIndex].start()
+                
+                if (currentIndex < commands.size) {
+                    commands[currentIndex].start()
+                }
             }
             else {
                 currentCommand.periodic()
