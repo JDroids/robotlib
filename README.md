@@ -1,5 +1,7 @@
-RobotLib
+DEPRECATED: RobotLib
 ==
+
+This library is deprecated. Go use [DogeCommander](https://github.com/DogeCV/DogeCommander).
 
 [![Build Status](https://travis-ci.org/JDroids/robotlib.svg?branch=master)](https://travis-ci.org/JDroids/robotlib)
 
